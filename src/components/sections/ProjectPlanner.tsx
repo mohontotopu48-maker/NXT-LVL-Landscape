@@ -33,9 +33,9 @@ const timelines = [
 
 const steps = [
   { id: 1, title: 'Project Type' },
-  { id: 2, title: 'Budget Range' },
+  { id: 2, title: 'Budget' },
   { id: 3, title: 'Timeline' },
-  { id: 4, title: 'Your Details' },
+  { id: 4, title: 'Details' },
 ]
 
 export function ProjectPlanner() {
@@ -53,7 +53,7 @@ export function ProjectPlanner() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' })
+  const isInView = useInView(sectionRef, { once: true, margin: '-60px' })
   const { toast } = useToast()
 
   const totalSteps = steps.length
@@ -96,29 +96,29 @@ export function ProjectPlanner() {
 
   if (isComplete) {
     return (
-      <section id="planner" className="py-24 sm:py-32 bg-white" ref={sectionRef}>
+      <section id="planner" className="py-16 sm:py-20 md:py-24 bg-white" ref={sectionRef}>
         <div className="max-w-2xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-20 h-20 bg-forest/10 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-16 h-16 sm:w-20 sm:h-20 bg-forest/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6"
           >
-            <Check className="w-10 h-10 text-forest" />
+            <Check className="w-8 h-8 sm:w-10 sm:h-10 text-forest" />
           </motion.div>
-          <h3 className="text-3xl font-display mb-4">You&apos;re All Set!</h3>
-          <p className="text-muted-foreground font-editorial text-lg">
+          <h3 className="text-2xl sm:text-3xl font-display mb-3 sm:mb-4">You&apos;re All Set!</h3>
+          <p className="text-sm sm:text-base text-muted-foreground font-editorial">
             Thank you, {selections.name}! Our team will review your project details and reach out
             within 24 hours with a personalized consultation plan.
           </p>
-          <div className="mt-8 p-6 bg-secondary/50 rounded-2xl">
-            <div className="text-sm text-muted-foreground mb-2">Estimated Promo Savings</div>
-            <div className="text-3xl font-display text-forest">
+          <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-secondary/50 rounded-xl sm:rounded-2xl">
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Estimated Promo Savings</div>
+            <div className="text-2xl sm:text-3xl font-display text-forest">
               {selections.budget === '50k+' || selections.budget === '25k-50k' || selections.budget === '10k-25k'
                 ? '$500 OFF'
                 : '10% OFF'}
             </div>
-            <div className="text-sm text-muted-foreground mt-1">Applied to your project estimate</div>
+            <div className="text-xs sm:text-sm text-muted-foreground mt-1">Applied to your project estimate</div>
           </div>
         </div>
       </section>
@@ -126,40 +126,40 @@ export function ProjectPlanner() {
   }
 
   return (
-    <section id="planner" className="py-24 sm:py-32 bg-white" ref={sectionRef}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="planner" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-white" ref={sectionRef}>
+      <div className="max-w-2xl sm:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-forest/5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-forest/5 rounded-full mb-4 sm:mb-6">
             <div className="w-1.5 h-1.5 bg-forest rounded-full" />
-            <span className="text-sm font-medium text-forest">Smart Project Planner</span>
+            <span className="text-xs sm:text-sm font-medium text-forest">Smart Project Planner</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display text-foreground mb-3 sm:mb-4">
             Let&apos;s Build Something{' '}
             <span className="text-forest">Extraordinary</span>
           </h2>
-          <p className="text-muted-foreground font-editorial text-lg">
+          <p className="text-sm sm:text-base text-muted-foreground font-editorial">
             Answer a few quick questions and we&apos;ll craft a personalized plan for your outdoor space.
           </p>
         </motion.div>
 
         {/* Step Indicators */}
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-3">
+        <div className="mb-8 sm:mb-10">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
             {steps.map((step) => (
               <div
                 key={step.id}
-                className={`text-xs font-medium transition-colors duration-300 ${
-                  currentStep >= step.id ? 'text-forest' : 'text-muted-foreground/50'
+                className={`text-[10px] sm:text-xs font-medium transition-colors duration-300 ${
+                  currentStep >= step.id ? 'text-forest' : 'text-muted-foreground/40'
                 }`}
               >
-                <span className="hidden sm:inline">{step.title}</span>
-                <span className="sm:hidden">{step.id}</span>
+                <span className="hidden md:inline">{step.title}</span>
+                <span className="md:hidden">Step {step.id}</span>
               </div>
             ))}
           </div>
@@ -177,27 +177,27 @@ export function ProjectPlanner() {
           key={currentStep}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="bg-secondary/30 rounded-2xl p-6 sm:p-10 border border-border/50"
+          transition={{ duration: 0.35 }}
+          className="bg-secondary/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 border border-border/50"
         >
           {/* Step 1: Project Type */}
           {currentStep === 1 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2">What type of project are you envisioning?</h3>
-              <p className="text-sm text-muted-foreground mb-6">Select one that best describes your project.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">What type of project?</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Select one that best describes your project.</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 {projectTypes.map((type) => (
                   <button
                     key={type.id}
                     onClick={() => setSelections({ ...selections, projectType: type.id })}
-                    className={`p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 ${
+                    className={`p-3 sm:p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 active:scale-[0.98] ${
                       selections.projectType === type.id
                         ? 'border-forest bg-forest/5 shadow-sm'
                         : 'border-border/50 bg-white'
                     }`}
                   >
-                    <span className="text-2xl mb-2 block">{type.icon}</span>
-                    <span className="text-sm font-medium">{type.label}</span>
+                    <span className="text-xl sm:text-2xl mb-1 sm:mb-2 block">{type.icon}</span>
+                    <span className="text-xs sm:text-sm font-medium">{type.label}</span>
                   </button>
                 ))}
               </div>
@@ -207,24 +207,24 @@ export function ProjectPlanner() {
           {/* Step 2: Budget */}
           {currentStep === 2 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2">What&apos;s your project budget range?</h3>
-              <p className="text-sm text-muted-foreground mb-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">What&apos;s your budget range?</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
                 This helps us recommend the best approach for your investment.
               </p>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {budgetRanges.map((range) => (
                   <button
                     key={range.id}
                     onClick={() => setSelections({ ...selections, budget: range.id })}
-                    className={`w-full p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 flex items-center justify-between ${
+                    className={`w-full p-3 sm:p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 active:scale-[0.99] flex items-center justify-between ${
                       selections.budget === range.id
                         ? 'border-forest bg-forest/5 shadow-sm'
                         : 'border-border/50 bg-white'
                     }`}
                   >
-                    <span className="font-medium">{range.label}</span>
+                    <span className="text-sm sm:text-base font-medium">{range.label}</span>
                     {selections.budget === range.id && (
-                      <Check className="w-5 h-5 text-forest" />
+                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-forest" />
                     )}
                   </button>
                 ))}
@@ -235,23 +235,23 @@ export function ProjectPlanner() {
           {/* Step 3: Timeline */}
           {currentStep === 3 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2">When would you like to start?</h3>
-              <p className="text-sm text-muted-foreground mb-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">When would you like to start?</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
                 No pressure — we work at your pace.
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 {timelines.map((tl) => (
                   <button
                     key={tl.id}
                     onClick={() => setSelections({ ...selections, timeline: tl.id })}
-                    className={`p-5 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 ${
+                    className={`p-4 sm:p-5 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/50 hover:bg-forest/5 active:scale-[0.98] ${
                       selections.timeline === tl.id
                         ? 'border-forest bg-forest/5 shadow-sm'
                         : 'border-border/50 bg-white'
                     }`}
                   >
-                    <span className="text-2xl mb-2 block">{tl.icon}</span>
-                    <span className="font-medium">{tl.label}</span>
+                    <span className="text-xl sm:text-2xl mb-1 sm:mb-2 block">{tl.icon}</span>
+                    <span className="text-sm sm:text-base font-medium">{tl.label}</span>
                   </button>
                 ))}
               </div>
@@ -261,58 +261,58 @@ export function ProjectPlanner() {
           {/* Step 4: Contact Details */}
           {currentStep === 4 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2">Almost there! How can we reach you?</h3>
-              <p className="text-sm text-muted-foreground mb-6">
-                We&apos;ll respond within 24 hours with your personalized project plan.
+              <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">Almost there!</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">
+                We&apos;ll respond within 24 hours with your personalized plan.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Full Name *</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-1.5">Full Name *</label>
                   <input
                     type="text"
                     value={selections.name}
                     onChange={(e) => setSelections({ ...selections, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="John Smith"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Email *</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-1.5">Email *</label>
                   <input
                     type="email"
                     value={selections.email}
                     onChange={(e) => setSelections({ ...selections, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Phone *</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-1.5">Phone *</label>
                   <input
                     type="tel"
                     value={selections.phone}
                     onChange={(e) => setSelections({ ...selections, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="(555) 123-4567"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Project Address</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-1.5">Project Address</label>
                   <input
                     type="text"
                     value={selections.address}
                     onChange={(e) => setSelections({ ...selections, address: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="123 Main St, City, State"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Additional Notes</label>
+                  <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-1.5">Additional Notes</label>
                   <textarea
                     value={selections.notes}
                     onChange={(e) => setSelections({ ...selections, notes: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all resize-none"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all resize-none"
                     placeholder="Tell us about your vision..."
                   />
                 </div>
@@ -321,15 +321,15 @@ export function ProjectPlanner() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
+          <div className="flex items-center justify-between mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border/50">
             <div>
               {currentStep > 1 && (
                 <Button
                   variant="ghost"
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="text-muted-foreground gap-2"
+                  className="text-muted-foreground gap-1.5 sm:gap-2 text-sm"
                 >
-                  <ArrowLeft size={16} />
+                  <ArrowLeft size={14} />
                   Back
                 </Button>
               )}
@@ -339,21 +339,21 @@ export function ProjectPlanner() {
                 <Button
                   onClick={() => setCurrentStep(currentStep + 1)}
                   disabled={!canProceed()}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 gap-2 disabled:opacity-40"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-5 sm:px-6 gap-2 disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11"
                 >
                   Continue
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </Button>
               ) : (
                 <Button
                   onClick={handleSubmit}
                   disabled={!canProceed() || isSubmitting}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-8 gap-2 disabled:opacity-40"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 sm:px-8 gap-2 disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11"
                 >
                   {isSubmitting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <Send size={16} />
+                    <Send size={14} />
                   )}
                   Submit Project
                 </Button>
@@ -363,7 +363,7 @@ export function ProjectPlanner() {
         </motion.div>
 
         {/* Trust Message */}
-        <p className="text-center text-xs text-muted-foreground mt-6">
+        <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-4 sm:mt-6">
           🔒 Your information is kept private. We never share your data.
         </p>
       </div>

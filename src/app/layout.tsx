@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -34,6 +34,13 @@ export const metadata: Metadata = {
       "Precision hardscaping and landscape design that creates lasting outdoor experiences. 20 years of expertise.",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#3d6b4f",
 };
 
 export default function RootLayout({
