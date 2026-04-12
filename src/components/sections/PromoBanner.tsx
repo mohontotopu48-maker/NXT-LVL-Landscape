@@ -3,39 +3,44 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Gift } from 'lucide-react'
+import { ArrowRight, Gift, Clock } from 'lucide-react'
 
 export function PromoBanner() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <section className="py-4 sm:py-6 md:py-8" ref={ref}>
+    <section className="py-6 sm:py-8 md:py-10" ref={ref}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-r from-forest via-forest to-forest-light p-5 sm:p-8 md:p-12"
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-forest-dark via-forest to-forest-light p-6 sm:p-8 md:p-10"
         >
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute top-0 right-0 w-40 sm:w-64 h-40 sm:h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-32 sm:w-48 h-32 sm:h-48 bg-white rounded-full translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-60 sm:w-80 h-60 sm:h-80 bg-white/[0.06] rounded-full" />
+            <div className="absolute -bottom-16 -left-16 w-48 sm:w-64 h-48 sm:h-64 bg-white/[0.04] rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/[0.02] rounded-full" />
           </div>
 
           <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-start gap-3 sm:gap-4 text-center sm:text-left">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 sm:w-13 sm:h-13 bg-white/15 rounded-xl flex items-center justify-center shrink-0">
                 <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-display text-white mb-0.5 sm:mb-1">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-display text-white mb-1">
                   $500 Off Your Hardscape Project
                 </h3>
-                <p className="text-white/80 font-editorial text-sm sm:text-base">
-                  Save big on projects $5,000 and above. Mention this offer when you request your free quote.
+                <p className="text-white/75 font-editorial text-sm sm:text-[15px] leading-relaxed">
+                  Save on projects $5,000+. Mention this offer when requesting your free estimate.
                 </p>
+                <div className="flex items-center gap-1.5 mt-2 text-white/50 text-xs">
+                  <Clock size={12} />
+                  <span>Limited time offer — Spring scheduling fills fast</span>
+                </div>
               </div>
             </div>
 
@@ -45,7 +50,7 @@ export function PromoBanner() {
             >
               <a href="#planner" className="gap-2">
                 Claim Offer
-                <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
             </Button>
           </div>

@@ -94,3 +94,51 @@ Stage Summary:
 - Horizontal overflow protection
 - Professional-grade responsive audit completed
 - Clean compile with zero warnings
+
+---
+Task ID: 4
+Agent: Main Agent
+Task: Comprehensive rebuild — research competitors, audit all components, make more impressive
+
+Work Log:
+- Read and audited all 10 section components, API route, Prisma schema, globals.css, layout.tsx
+- Launched subagent to research 50+ competitor landscape/hardscape websites
+- Analyzed 8+ industry articles from FreshySites, Hook Agency, Halstead Media, Nesta Sites, etc.
+- Extracted key winning patterns: video heroes, process timelines, before/after galleries, animated counters, sticky mobile CTA bars, partner badges, financing options, urgency messaging
+- Identified the winning formula: Professional Photography + Clear Value Prop + Trust Signals + Strategic CTAs + Mobile-First + Local SEO
+
+COMPONENT REBUILDS:
+1. **globals.css** — Enhanced with new animations (shimmer gradient text, float, subtle-pulse), premium glassmorphism utility, custom selection colors, font-eyebrow utility, gold color token, darker forest/primary for more premium feel
+2. **Navbar** — Slimmer h-14/h-16/h-[72px], transparent→glass on scroll, phone number in desktop nav, tap-to-call mobile button, refined typography
+3. **Hero** — Clamp-based responsive typography, multi-layer gradient overlays, glassmorphism badge, gradient animated "Elevated." text, refined trust indicators
+4. **TrustBar** — Added animated number counters (count up on scroll-in-view), partner badges section (Belgard, Techo-Bloc, Epic, Unique), separated into two visual sections
+5. **Services** — Better aspect ratios (4/3), category tags on images, refined hover states, better card padding, improved typography hierarchy
+6. **NEW: Process** — "How It Works" 4-step timeline (Consultation → Design → Build → Enjoy) with icons, connector lines, hover effects
+7. **NEW: ProjectGallery** — Replaced InstagramFeed with full project gallery featuring lightbox viewer with prev/next navigation, category badges, expandable descriptions
+8. **Experience** — Expanded with "Why Choose Us" section (6 advantage cards: Licensed, On-Time, Premium Materials, Clean Sites, 5-Year Warranty, Satisfaction Guaranteed) + testimonials with avatar initials
+9. **PromoBanner** — Enhanced with urgency messaging ("Spring scheduling fills fast"), multi-circle background pattern, refined spacing
+10. **ProjectPlanner** — Better UX: clickable step indicators to go back, gradient progress bar, shorter step labels on mobile, two-column name/email/phone layout in step 4
+11. **CTA** — Added urgency badge ("Spring 2025 Scheduling Open"), flexible financing mention, trust features bar, background decorative circles
+12. **Footer** — Added scroll-to-top button, cleaner contact column, refined spacing and typography
+13. **NEW: StickyMobileBar** — Dismissible sticky bottom bar with Call Now + Free Estimate buttons, auto-shows after 400px scroll, iOS safe area padding
+
+SECTION ORDER (optimized for conversion flow):
+Hero → TrustBar → Services → Process → PromoBanner → ProjectGallery → Experience (About + Why Choose Us + Testimonials) → ProjectPlanner → CTA → Footer + StickyMobileBar
+
+- Removed unused InstagramFeed component
+- Zero lint errors in all section components
+- Dev server compiles cleanly with HTTP 200 via caddy proxy
+
+Stage Summary:
+- 3 new components added (Process, ProjectGallery, StickyMobileBar)
+- 2 new sections within Experience (Why Choose Us + Testimonials with avatars)
+- Animated number counters in TrustBar
+- Full lightbox image gallery with navigation
+- Sticky mobile call-to-action bar
+- Urgency messaging throughout (Spring 2025 scheduling)
+- Partner/manufacturer trust badges
+- Flexible financing mention in CTA
+- Gradient animated hero text
+- Glassmorphism effects
+- Enhanced color palette with gold accent
+- Professional-grade conversion flow based on competitor analysis

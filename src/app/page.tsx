@@ -1,13 +1,15 @@
 import { Navbar } from '@/components/sections/Navbar'
 import { Hero } from '@/components/sections/Hero'
 import { TrustBar } from '@/components/sections/TrustBar'
-import { Experience } from '@/components/sections/Experience'
 import { Services } from '@/components/sections/Services'
+import { Process } from '@/components/sections/Process'
 import { PromoBanner } from '@/components/sections/PromoBanner'
+import { ProjectGallery } from '@/components/sections/ProjectGallery'
+import { Experience } from '@/components/sections/Experience'
 import { ProjectPlanner } from '@/components/sections/ProjectPlanner'
-import { InstagramFeed } from '@/components/sections/InstagramFeed'
 import { CTA } from '@/components/sections/CTA'
 import { Footer } from '@/components/sections/Footer'
+import { StickyMobileBar } from '@/components/sections/StickyMobileBar'
 
 export default function Home() {
   return (
@@ -17,13 +19,15 @@ export default function Home() {
         <Hero />
         <TrustBar />
         <Services />
+        <Process />
         <PromoBanner />
+        <ProjectGallery />
         <Experience />
         <ProjectPlanner />
-        <InstagramFeed />
         <CTA />
       </main>
       <Footer />
+      <StickyMobileBar />
     </div>
   )
 }

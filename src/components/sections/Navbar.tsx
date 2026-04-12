@@ -7,9 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { label: 'Services', href: '#services' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Start Your Project', href: '#planner' },
+  { label: 'Process', href: '#process' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'About', href: '#experience' },
+  { label: 'Contact', href: '#planner' },
 ]
 
 export function Navbar() {
@@ -17,12 +18,11 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => setIsScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -37,64 +37,86 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-sm'
-            : 'bg-gradient-to-b from-black/30 to-transparent'
+            ? 'bg-background/80 backdrop-blur-2xl border-b border-border/30 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
+            : 'bg-transparent'
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-[72px] flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 sm:gap-3 group z-10">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-primary rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-              <span className="text-primary-foreground font-bold text-xs sm:text-sm tracking-tight">NXT</span>
+          <a href="#" className="flex items-center gap-2 sm:gap-3 group z-10">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+              <span className="text-primary-foreground font-bold text-[10px] sm:text-xs tracking-tight">NXT</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-semibold tracking-tight leading-none">
+              <span className={`text-sm sm:text-[15px] font-semibold tracking-tight leading-none transition-colors duration-300 ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}>
                 NXT LVL
               </span>
-              <span className="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-muted-foreground leading-none mt-0.5">
+              <span className={`text-[9px] sm:text-[10px] tracking-[0.18em] uppercase leading-none mt-0.5 transition-colors duration-300 ${
+                isScrolled ? 'text-muted-foreground' : 'text-white/60'
+              }`}>
                 Landscape
               </span>
             </div>
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 xl:px-4 py-2 text-sm transition-colors duration-300 rounded-lg hover:bg-secondary/50 ${
-                  isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+                className={`px-3 xl:px-4 py-2 text-[13px] font-medium transition-all duration-300 rounded-lg hover:bg-black/5 ${
+                  isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {link.label}
               </a>
             ))}
-            <Button
-              asChild
-              className="ml-3 bg-forest hover:bg-forest-light text-white rounded-full px-5 xl:px-6 h-10 text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-forest/20"
-            >
-              <a href="#planner">Free Quote</a>
-            </Button>
+            <div className="ml-3 flex items-center gap-2">
+              <a
+                href="tel:+15551234567"
+                className={`px-3 py-2 text-[13px] font-medium transition-all duration-300 rounded-lg flex items-center gap-1.5 ${
+                  isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
+                }`}
+              >
+                <Phone size={13} />
+                (555) 123-4567
+              </a>
+              <Button
+                asChild
+                className="bg-forest hover:bg-forest-light text-white rounded-full px-5 xl:px-6 h-9 text-[13px] font-medium transition-all duration-300 hover:shadow-lg hover:shadow-forest/25"
+              >
+                <a href="#planner">Free Estimate</a>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile: CTA + Toggle */}
           <div className="flex lg:hidden items-center gap-2">
-            <Button
-              asChild
-              className="bg-forest hover:bg-forest-light text-white rounded-full px-5 h-11 text-xs font-medium"
+            <a
+              href="tel:+15551234567"
+              className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
+                isScrolled
+                  ? 'bg-forest/5 text-forest hover:bg-forest/10'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
+              aria-label="Call us"
             >
-              <a href="#planner">Free Quote</a>
-            </Button>
+              <Phone size={16} />
+            </a>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`w-11 h-11 flex items-center justify-center rounded-lg transition-colors z-10 ${isScrolled ? 'hover:bg-secondary/50 text-foreground' : 'hover:bg-white/10 text-white'}`}
+              className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors z-10 ${
+                isScrolled ? 'hover:bg-secondary text-foreground' : 'hover:bg-white/10 text-white'
+              }`}
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </nav>
@@ -107,35 +129,41 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 bg-background lg:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-2 px-8">
+            <div className="flex flex-col items-center justify-center h-full gap-1 px-8">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
-                  className="text-2xl sm:text-3xl font-display text-foreground hover:text-forest py-3 transition-colors duration-200"
+                  transition={{ duration: 0.3, delay: i * 0.06 }}
+                  className="text-[26px] font-display text-foreground hover:text-forest py-2.5 transition-colors duration-200"
                 >
                   {link.label}
                 </motion.a>
               ))}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.35 }}
-                className="mt-6"
+                className="mt-8 flex flex-col items-center gap-4"
               >
+                <Button
+                  asChild
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-8 h-12 text-sm font-medium w-64"
+                >
+                  <a href="#planner" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
+                </Button>
                 <a
                   href="tel:+15551234567"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
-                  <Phone size={18} />
-                  <span className="text-lg">(555) 123-4567</span>
+                  <Phone size={16} />
+                  (555) 123-4567
                 </a>
               </motion.div>
             </div>
