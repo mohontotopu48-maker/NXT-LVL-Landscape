@@ -1,0 +1,9 @@
+{
+  "name": "nxtlvl-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node /home/z/my-project/.next/standalone/server.js",
+    "start": "node /home/z/my-project/.next/standalone/server.js"
+  }
+}
