@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  /* NXT LVL Custom Colors */
+  --color-earth: var(--earth);
+  --color-earth-light: var(--earth-light);
+  --color-earth-dark: var(--earth-dark);
+  --color-forest: var(--forest);
+  --color-forest-light: var(--forest-light);
+  --color-warm-gray: var(--warm-gray);
+  --color-cream: var(--cream);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* NXT LVL Landscape - Apple Aesthetic with Nature Accents */
+  --background: #fafaf8;
+  --foreground: #1a1a18;
+  --card: #ffffff;
+  --card-foreground: #1a1a18;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a18;
+  --primary: #2d2d2a;
+  --primary-foreground: #fafaf8;
+  --secondary: #f0ede8;
+  --secondary-foreground: #2d2d2a;
+  --muted: #f0ede8;
+  --muted-foreground: #78756f;
+  --accent: #3d6b4f;
+  --accent-foreground: #fafaf8;
+  --destructive: #c0392b;
+  --border: #e8e4df;
+  --input: #e8e4df;
+  --ring: #3d6b4f;
+
+  /* Custom Nature-Inspired Palette */
+  --earth: #8B7355;
+  --earth-light: #A89070;
+  --earth-dark: #6B5640;
+  --forest: #3d6b4f;
+  --forest-light: #5a8f6e;
+  --warm-gray: #78756f;
+  --cream: #fafaf8;
+
+  --chart-1: #3d6b4f;
+  --chart-2: #8B7355;
+  --chart-3: #D4A76A;
+  --chart-4: #5a8f6e;
+  --chart-5: #A89070;
+
+  --sidebar: #f5f3ef;
+  --sidebar-foreground: #1a1a18;
+  --sidebar-primary: #2d2d2a;
+  --sidebar-primary-foreground: #fafaf8;
+  --sidebar-accent: #f0ede8;
+  --sidebar-accent-foreground: #2d2d2a;
+  --sidebar-border: #e8e4df;
+  --sidebar-ring: #3d6b4f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Premium Typography */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .font-display {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .font-editorial {
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+  }
+}
+
+/* Smooth scroll anchor offset for fixed header */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8c4be;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a4a0;
+}
