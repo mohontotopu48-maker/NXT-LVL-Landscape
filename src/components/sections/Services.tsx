@@ -77,7 +77,7 @@ function ServiceCard({
       {/* Content */}
       <div className="p-4 sm:p-6 lg:p-8">
         <h3 className="text-lg sm:text-xl font-semibold mb-1.5 sm:mb-2 tracking-tight">{service.title}</h3>
-        <p className="text-muted-foreground font-editorial text-xs sm:text-sm leading-relaxed mb-3 sm:mb-5">
+        <p className="text-muted-foreground font-editorial text-sm leading-relaxed mb-3 sm:mb-5">
           {service.description}
         </p>
 

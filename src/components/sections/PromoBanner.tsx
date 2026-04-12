@@ -33,7 +33,7 @@ export function PromoBanner() {
                 <h3 className="text-lg sm:text-xl md:text-2xl font-display text-white mb-0.5 sm:mb-1">
                   $500 Off Your Hardscape Project
                 </h3>
-                <p className="text-white/80 font-editorial text-xs sm:text-sm md:text-base">
+                <p className="text-white/80 font-editorial text-sm sm:text-base">
                   Save big on projects $5,000 and above. Mention this offer when you request your free quote.
                 </p>
               </div>

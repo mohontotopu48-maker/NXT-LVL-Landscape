@@ -272,7 +272,7 @@ export function ProjectPlanner() {
                     type="text"
                     value={selections.name}
                     onChange={(e) => setSelections({ ...selections, name: e.target.value })}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="John Smith"
                   />
                 </div>
@@ -282,7 +282,7 @@ export function ProjectPlanner() {
                     type="email"
                     value={selections.email}
                     onChange={(e) => setSelections({ ...selections, email: e.target.value })}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -292,7 +292,7 @@ export function ProjectPlanner() {
                     type="tel"
                     value={selections.phone}
                     onChange={(e) => setSelections({ ...selections, phone: e.target.value })}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -302,7 +302,7 @@ export function ProjectPlanner() {
                     type="text"
                     value={selections.address}
                     onChange={(e) => setSelections({ ...selections, address: e.target.value })}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all"
                     placeholder="123 Main St, City, State"
                   />
                 </div>
@@ -312,7 +312,7 @@ export function ProjectPlanner() {
                     value={selections.notes}
                     onChange={(e) => setSelections({ ...selections, notes: e.target.value })}
                     rows={3}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all resize-none"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 rounded-lg sm:rounded-xl border border-border bg-white text-sm sm:text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest/50 transition-all resize-none"
                     placeholder="Tell us about your vision..."
                   />
                 </div>
@@ -327,7 +327,7 @@ export function ProjectPlanner() {
                 <Button
                   variant="ghost"
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="text-muted-foreground gap-1.5 sm:gap-2 text-sm"
+                  className="text-muted-foreground gap-1.5 sm:gap-2 text-sm h-11 sm:h-12"
                 >
                   <ArrowLeft size={14} />
                   Back
@@ -339,7 +339,7 @@ export function ProjectPlanner() {
                 <Button
                   onClick={() => setCurrentStep(currentStep + 1)}
                   disabled={!canProceed()}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-5 sm:px-6 gap-2 disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-5 sm:px-6 gap-2 disabled:opacity-40 text-sm sm:text-base h-11 sm:h-12"
                 >
                   Continue
                   <ArrowRight size={14} />
@@ -348,7 +348,7 @@ export function ProjectPlanner() {
                 <Button
                   onClick={handleSubmit}
                   disabled={!canProceed() || isSubmitting}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 sm:px-8 gap-2 disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 sm:px-8 gap-2 disabled:opacity-40 text-sm sm:text-base h-11 sm:h-12"
                 >
                   {isSubmitting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />

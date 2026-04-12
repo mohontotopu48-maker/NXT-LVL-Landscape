@@ -85,15 +85,13 @@ export function Navbar() {
           <div className="flex lg:hidden items-center gap-2">
             <Button
               asChild
-              className="bg-forest hover:bg-forest-light text-white rounded-full px-4 h-9 text-xs font-medium"
+              className="bg-forest hover:bg-forest-light text-white rounded-full px-5 h-11 text-xs font-medium"
             >
               <a href="#planner">Free Quote</a>
             </Button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-lg transition-colors z-10 ${
-                isScrolled ? 'hover:bg-secondary/50 text-foreground' : 'hover:bg-white/10 text-white'
-              }`}
+              className={`w-11 h-11 flex items-center justify-center rounded-lg transition-colors z-10 ${isScrolled ? 'hover:bg-secondary/50 text-foreground' : 'hover:bg-white/10 text-white'}`}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
