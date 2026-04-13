@@ -1,9 +1,16 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+
+const heroImages = [
+  '/images/hero-gen-1.jpg',
+  '/images/hero-gen-2.jpg',
+  '/images/hero-gen-3.jpg',
+  '/images/hero-gen-4.jpg',
+]
 
 // Floating leaf particles
 function LeafParticles() {
@@ -63,6 +70,7 @@ function AnimatedWords({ text, className, delay = 0 }: { text: string; className
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -73,26 +81,71 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60])
 
+  // Auto-advance slideshow
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section
       id="home"
       ref={sectionRef}
       className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image with Ken Burns + Parallax */}
+      {/* Background Image Slideshow with Ken Burns + Parallax */}
       <motion.div
         className="absolute inset-0"
         style={{ y: bgY, scale: bgScale }}
       >
-        <img
-          src="/images/hero-real.jpg"
-          alt="Professional landscaping and hardscaping by NXT LVL Landscape"
-          className="w-full h-full object-cover ken-burns"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0"
+          >
+            <img
+              src={heroImages[currentSlide]}
+              alt="Professional landscaping and hardscaping by NXT LVL Landscape"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Preload next image */}
+        {heroImages.map((src, i) => (
+          <link
+            key={src}
+            rel="preload"
+            as="image"
+            href={src}
+          />
+        ))}
       </motion.div>
 
       {/* Cinematic multi-layer overlay */}
       <div className="absolute inset-0 hero-overlay" />
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+        {heroImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`transition-all duration-500 rounded-full cursor-pointer ${
+              currentSlide === i
+                ? 'w-8 h-2 bg-white/90'
+                : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
 
       {/* Floating leaf particles */}
       <LeafParticles />

@@ -125,7 +125,7 @@ export function Experience() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/[0.08]">
                 <img
-                  src="/images/about-real.jpg"
+                  src="/images/about-gen.jpg"
                   alt="NXT LVL Landscape team at work in Orange County"
                   className="w-full aspect-[4/3] object-cover"
                 />

@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, Phone, Mail, Star, Gift } from 'lucide-react'
 
 const slideshowImages = [
-  '/images/real-project-1.jpg',
-  '/images/real-project-5.jpg',
-  '/images/real-project-6.jpg',
-  '/images/svc-pavers-real.jpg',
+  '/images/cta-bg-1.jpg',
+  '/images/hero-gen-2.jpg',
+  '/images/hero-gen-3.jpg',
+  '/images/hero-gen-4.jpg',
 ]
 
 export function CTA() {
