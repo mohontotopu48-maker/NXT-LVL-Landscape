@@ -5,15 +5,20 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const quickLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Our Services', href: '#services' },
-  { label: 'FAQs', href: '#faq' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Our Services', href: '/#services' },
+  { label: 'Gallery', href: '/#gallery' },
 ]
 
 const helpLinks = [
-  { label: 'Contact Us', href: '#contact' },
-  { label: 'FAQs', href: '#faq' },
+  { label: 'Contact Us', href: '/#contact' },
+  { label: 'FAQs', href: '/#faq' },
+]
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms & Conditions', href: '/terms' },
 ]
 
 export function Footer() {
@@ -115,8 +120,9 @@ export function Footer() {
         <div className="py-5 sm:py-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs text-primary-foreground/40">
           <p>&copy; 2025 By NXT LVL Landscape. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#privacy" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-primary-foreground/70 transition-colors">Terms & Conditions</a>
+            {legalLinks.map((link) => (
+              <a key={link.label} href={link.href} className="hover:text-primary-foreground/70 transition-colors">{link.label}</a>
+            ))}
           </div>
         </div>
       </div>

@@ -13,8 +13,6 @@ import { ProjectGallery } from '@/components/sections/ProjectGallery'
 import { EstimateForm } from '@/components/sections/EstimateForm'
 import { FAQ } from '@/components/sections/FAQ'
 import { CTA } from '@/components/sections/CTA'
-import { PrivacyPolicy } from '@/components/sections/PrivacyPolicy'
-import { TermsConditions } from '@/components/sections/TermsConditions'
 import { Footer } from '@/components/sections/Footer'
 import { StickyMobileBar } from '@/components/sections/StickyMobileBar'
 import { ChatWidget } from '@/components/sections/ChatWidget'
@@ -42,8 +40,6 @@ export default function Home() {
         <EstimateForm />
         <FAQ />
         <CTA />
-        <PrivacyPolicy />
-        <TermsConditions />
       </main>
       <Footer />
       <StickyMobileBar />

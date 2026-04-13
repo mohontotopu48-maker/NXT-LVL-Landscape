@@ -1,30 +1,112 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 
-export function Hero() {
-  return (
-    <section id="home" className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background Image with parallax-like drift */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/hero.jpg"
-          alt="Professional landscaping and hardscaping by NXT LVL Landscape"
-          className="w-full h-full object-cover parallax-drift"
-        />
-        {/* Cinematic multi-layer overlay */}
-        <div className="absolute inset-0 hero-overlay" />
-      </div>
+// Floating leaf particles
+function LeafParticles() {
+  const particles = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    size: 3 + Math.random() * 4,
+    duration: 12 + Math.random() * 18,
+    delay: Math.random() * 15,
+    drift: (Math.random() - 0.5) * 120,
+  }))
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-14 sm:pt-20">
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[2]">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute rounded-full bg-white/20"
+          style={{
+            left: p.left,
+            top: -20,
+            width: p.size,
+            height: p.size,
+            animation: `leaf-float ${p.duration}s linear ${p.delay}s infinite`,
+            // @ts-expect-error CSS custom animation
+            '--drift': `${p.drift}px`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Word-by-word staggered text reveal
+function AnimatedWords({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
+  const words = text.split(' ')
+  return (
+    <span className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.5,
+            delay: delay + i * 0.08,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
+export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60])
+
+  return (
+    <section
+      id="home"
+      ref={sectionRef}
+      className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Image with Ken Burns + Parallax */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: bgY, scale: bgScale }}
+      >
+        <img
+          src="/images/hero-real.jpg"
+          alt="Professional landscaping and hardscaping by NXT LVL Landscape"
+          className="w-full h-full object-cover ken-burns"
+        />
+      </motion.div>
+
+      {/* Cinematic multi-layer overlay */}
+      <div className="absolute inset-0 hero-overlay" />
+
+      {/* Floating leaf particles */}
+      <LeafParticles />
+
+      {/* Content with parallax */}
+      <motion.div
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-14 sm:pt-20"
+        style={{ opacity: contentOpacity, y: contentY }}
+      >
         {/* Tagline Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          initial={{ opacity: 0, y: 16, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="inline-flex items-center gap-2 px-4 py-1.5 glass rounded-full mb-6 sm:mb-8"
         >
           <div className="w-1.5 h-1.5 bg-[#4ade80] rounded-full animate-subtle-pulse" />
@@ -33,23 +115,22 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[clamp(2.2rem,7vw,5rem)] font-display text-white leading-[1.05] mb-5 sm:mb-6 text-balance"
-        >
-          Professional Landscaping
+        {/* Headline - word-by-word reveal */}
+        <h1 className="text-[clamp(2.2rem,7vw,5rem)] font-display text-white leading-[1.05] mb-5 sm:mb-6 text-balance">
+          <AnimatedWords text="Professional Landscaping" delay={0.5} />
           <br />
-          <span className="gradient-text-light">& Hardscaping Services</span>
-        </motion.h1>
+          <AnimatedWords
+            text="& Hardscaping Services"
+            delay={0.9}
+            className="gradient-text-light"
+          />
+        </h1>
 
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.8, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
           className="text-base sm:text-lg md:text-xl text-white/75 font-editorial max-w-2xl mx-auto mb-8 sm:mb-10 px-2 text-balance leading-relaxed"
         >
           From lush gardens to stunning patios, NXT LVL Landscape brings your outdoor vision to life. Get expert design, reliable service, and lasting beauty for your home or business.
@@ -59,13 +140,13 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4"
         >
           <Button
             asChild
             size="lg"
-            className="w-full sm:w-auto bg-forest hover:bg-forest-light text-white rounded-full px-7 sm:px-8 h-12 sm:h-[52px] text-sm sm:text-[15px] font-semibold shadow-2xl shadow-black/25 transition-all duration-300 hover:shadow-black/35 hover:scale-[1.02] glow-green group"
+            className="w-full sm:w-auto bg-forest hover:bg-forest-light text-white rounded-full px-7 sm:px-8 h-12 sm:h-[52px] text-sm sm:text-[15px] font-semibold shadow-2xl shadow-black/25 transition-all duration-300 hover:shadow-black/35 hover:scale-[1.02] animate-pulse-glow group"
           >
             <a href="#contact" className="gap-2">
               Get Free Estimate
@@ -88,7 +169,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
+          transition={{ duration: 1, delay: 2 }}
           className="mt-10 sm:mt-14 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-8 gap-y-2 text-white/50 text-[11px] sm:text-xs"
         >
           <div className="flex items-center gap-1.5">
@@ -107,13 +188,13 @@ export function Hero() {
             <span>(657) 720-9054</span>
           </a>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 0.8 }}
+        transition={{ delay: 2.5, duration: 0.8 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:block"
       >
         <motion.div
@@ -121,7 +202,11 @@ export function Hero() {
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           className="w-[22px] h-[34px] rounded-full border-[1.5px] border-white/25 flex items-start justify-center pt-2"
         >
-          <div className="w-[3px] h-[6px] bg-white/50 rounded-full" />
+          <motion.div
+            className="w-[3px] h-[6px] bg-white/50 rounded-full"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+          />
         </motion.div>
       </motion.div>
     </section>

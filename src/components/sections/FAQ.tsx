@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ChevronDown, HelpCircle } from 'lucide-react'
 
@@ -39,36 +39,53 @@ const faqs = [
   },
 ]
 
-function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void }) {
+function FAQItem({ faq, isOpen, onToggle, index, isInView }: { faq: typeof faqs[0]; isOpen: boolean; onToggle: () => void; index: number; isInView: boolean }) {
   return (
-    <div className="border-b border-border/40 last:border-b-0">
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.4, delay: 0.2 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      className="border-b border-border/40 last:border-b-0"
+    >
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between py-5 sm:py-6 text-left group cursor-pointer"
         aria-expanded={isOpen}
       >
-        <span className="text-sm sm:text-[15px] font-medium text-foreground pr-4 group-hover:text-forest transition-colors">
+        <span className="text-sm sm:text-[15px] font-medium text-foreground pr-4 group-hover:text-forest transition-colors duration-200">
           {faq.question}
         </span>
-        <ChevronDown
-          size={18}
-          className={`shrink-0 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180 text-forest' : ''}`}
-        />
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <ChevronDown
+            size={18}
+            className={`shrink-0 transition-colors duration-300 ${isOpen ? 'text-forest' : 'text-muted-foreground'}`}
+          />
+        </motion.div>
       </button>
-      <motion.div
-        initial={false}
-        animate={{
-          height: isOpen ? 'auto' : 0,
-          opacity: isOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="overflow-hidden"
-      >
-        <p className="pb-5 sm:pb-6 text-sm text-muted-foreground font-editorial leading-relaxed pr-8">
-          {faq.answer}
-        </p>
-      </motion.div>
-    </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden accordion-content"
+          >
+            <motion.p
+              initial={{ y: -8 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
+              className="pb-5 sm:pb-6 text-sm text-muted-foreground font-editorial leading-relaxed pr-8"
+            >
+              {faq.answer}
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }
 
@@ -91,12 +108,22 @@ export function FAQ() {
             <HelpCircle size={14} />
             FAQs
           </div>
-          <h2 className="text-[clamp(1.75rem,5vw,2.75rem)] font-display text-foreground mb-3 sm:mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+            animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[clamp(1.75rem,5vw,2.75rem)] font-display text-foreground mb-3 sm:mb-4"
+          >
             Frequently Asked Questions
-          </h2>
-          <p className="text-sm sm:text-[15px] text-muted-foreground font-editorial max-w-lg mx-auto leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-sm sm:text-[15px] text-muted-foreground font-editorial max-w-lg mx-auto leading-relaxed"
+          >
             Got questions? We&apos;ve got answers. Here are the most common things people ask us about.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* FAQ Items */}
@@ -112,6 +139,8 @@ export function FAQ() {
               faq={faq}
               isOpen={openIndex === index}
               onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+              index={index}
+              isInView={isInView}
             />
           ))}
         </motion.div>
@@ -120,25 +149,29 @@ export function FAQ() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="text-center mt-10 sm:mt-12"
         >
           <p className="text-sm text-muted-foreground mb-4">
             Still have questions? We&apos;re happy to help!
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               href="tel:+16577209054"
               className="inline-flex items-center gap-2 bg-forest hover:bg-forest-light text-white rounded-full px-6 h-11 text-sm font-semibold transition-all hover:shadow-lg hover:shadow-forest/25"
             >
               📞 (657) 720-9054
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               href="#contact"
               className="inline-flex items-center gap-2 border border-border hover:bg-secondary text-foreground rounded-full px-6 h-11 text-sm font-semibold transition-all"
             >
               Send a Message
-            </a>
+            </motion.a>
           </div>
         </motion.div>
       </div>
