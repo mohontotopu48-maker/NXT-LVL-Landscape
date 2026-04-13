@@ -10,9 +10,8 @@ const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'FAQs', href: '#faq' },
+  { label: 'Contact Us', href: '#contact' },
 ]
 
 export function Navbar() {

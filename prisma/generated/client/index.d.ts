@@ -876,11 +876,9 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
-    projectType: string | null
-    budget: string | null
-    timeline: string | null
-    address: string | null
-    notes: string | null
+    service: string | null
+    message: string | null
+    smsConsent: boolean | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -891,11 +889,9 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
-    projectType: string | null
-    budget: string | null
-    timeline: string | null
-    address: string | null
-    notes: string | null
+    service: string | null
+    message: string | null
+    smsConsent: boolean | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -906,11 +902,9 @@ export namespace Prisma {
     name: number
     email: number
     phone: number
-    projectType: number
-    budget: number
-    timeline: number
-    address: number
-    notes: number
+    service: number
+    message: number
+    smsConsent: number
     status: number
     createdAt: number
     updatedAt: number
@@ -923,11 +917,9 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    projectType?: true
-    budget?: true
-    timeline?: true
-    address?: true
-    notes?: true
+    service?: true
+    message?: true
+    smsConsent?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -938,11 +930,9 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    projectType?: true
-    budget?: true
-    timeline?: true
-    address?: true
-    notes?: true
+    service?: true
+    message?: true
+    smsConsent?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -953,11 +943,9 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    projectType?: true
-    budget?: true
-    timeline?: true
-    address?: true
-    notes?: true
+    service?: true
+    message?: true
+    smsConsent?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -1041,11 +1029,9 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
-    projectType: string
-    budget: string
-    timeline: string
-    address: string
-    notes: string
+    service: string
+    message: string
+    smsConsent: boolean
     status: string
     createdAt: Date
     updatedAt: Date
@@ -1073,11 +1059,9 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    projectType?: boolean
-    budget?: boolean
-    timeline?: boolean
-    address?: boolean
-    notes?: boolean
+    service?: boolean
+    message?: boolean
+    smsConsent?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1088,11 +1072,9 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    projectType?: boolean
-    budget?: boolean
-    timeline?: boolean
-    address?: boolean
-    notes?: boolean
+    service?: boolean
+    message?: boolean
+    smsConsent?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1103,11 +1085,9 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    projectType?: boolean
-    budget?: boolean
-    timeline?: boolean
-    address?: boolean
-    notes?: boolean
+    service?: boolean
+    message?: boolean
+    smsConsent?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1118,17 +1098,15 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    projectType?: boolean
-    budget?: boolean
-    timeline?: boolean
-    address?: boolean
-    notes?: boolean
+    service?: boolean
+    message?: boolean
+    smsConsent?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LeadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "projectType" | "budget" | "timeline" | "address" | "notes" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["lead"]>
+  export type LeadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "service" | "message" | "smsConsent" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["lead"]>
 
   export type $LeadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Lead"
@@ -1138,11 +1116,9 @@ export namespace Prisma {
       name: string
       email: string
       phone: string
-      projectType: string
-      budget: string
-      timeline: string
-      address: string
-      notes: string
+      service: string
+      message: string
+      smsConsent: boolean
       status: string
       createdAt: Date
       updatedAt: Date
@@ -1573,11 +1549,9 @@ export namespace Prisma {
     readonly name: FieldRef<"Lead", 'String'>
     readonly email: FieldRef<"Lead", 'String'>
     readonly phone: FieldRef<"Lead", 'String'>
-    readonly projectType: FieldRef<"Lead", 'String'>
-    readonly budget: FieldRef<"Lead", 'String'>
-    readonly timeline: FieldRef<"Lead", 'String'>
-    readonly address: FieldRef<"Lead", 'String'>
-    readonly notes: FieldRef<"Lead", 'String'>
+    readonly service: FieldRef<"Lead", 'String'>
+    readonly message: FieldRef<"Lead", 'String'>
+    readonly smsConsent: FieldRef<"Lead", 'Boolean'>
     readonly status: FieldRef<"Lead", 'String'>
     readonly createdAt: FieldRef<"Lead", 'DateTime'>
     readonly updatedAt: FieldRef<"Lead", 'DateTime'>
@@ -1961,11 +1935,9 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     phone: 'phone',
-    projectType: 'projectType',
-    budget: 'budget',
-    timeline: 'timeline',
-    address: 'address',
-    notes: 'notes',
+    service: 'service',
+    message: 'message',
+    smsConsent: 'smsConsent',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -1995,6 +1967,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2019,11 +1998,9 @@ export namespace Prisma {
     name?: StringFilter<"Lead"> | string
     email?: StringFilter<"Lead"> | string
     phone?: StringFilter<"Lead"> | string
-    projectType?: StringFilter<"Lead"> | string
-    budget?: StringFilter<"Lead"> | string
-    timeline?: StringFilter<"Lead"> | string
-    address?: StringFilter<"Lead"> | string
-    notes?: StringFilter<"Lead"> | string
+    service?: StringFilter<"Lead"> | string
+    message?: StringFilter<"Lead"> | string
+    smsConsent?: BoolFilter<"Lead"> | boolean
     status?: StringFilter<"Lead"> | string
     createdAt?: DateTimeFilter<"Lead"> | Date | string
     updatedAt?: DateTimeFilter<"Lead"> | Date | string
@@ -2034,11 +2011,9 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    projectType?: SortOrder
-    budget?: SortOrder
-    timeline?: SortOrder
-    address?: SortOrder
-    notes?: SortOrder
+    service?: SortOrder
+    message?: SortOrder
+    smsConsent?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -2052,11 +2027,9 @@ export namespace Prisma {
     name?: StringFilter<"Lead"> | string
     email?: StringFilter<"Lead"> | string
     phone?: StringFilter<"Lead"> | string
-    projectType?: StringFilter<"Lead"> | string
-    budget?: StringFilter<"Lead"> | string
-    timeline?: StringFilter<"Lead"> | string
-    address?: StringFilter<"Lead"> | string
-    notes?: StringFilter<"Lead"> | string
+    service?: StringFilter<"Lead"> | string
+    message?: StringFilter<"Lead"> | string
+    smsConsent?: BoolFilter<"Lead"> | boolean
     status?: StringFilter<"Lead"> | string
     createdAt?: DateTimeFilter<"Lead"> | Date | string
     updatedAt?: DateTimeFilter<"Lead"> | Date | string
@@ -2067,11 +2040,9 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    projectType?: SortOrder
-    budget?: SortOrder
-    timeline?: SortOrder
-    address?: SortOrder
-    notes?: SortOrder
+    service?: SortOrder
+    message?: SortOrder
+    smsConsent?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -2088,11 +2059,9 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Lead"> | string
     email?: StringWithAggregatesFilter<"Lead"> | string
     phone?: StringWithAggregatesFilter<"Lead"> | string
-    projectType?: StringWithAggregatesFilter<"Lead"> | string
-    budget?: StringWithAggregatesFilter<"Lead"> | string
-    timeline?: StringWithAggregatesFilter<"Lead"> | string
-    address?: StringWithAggregatesFilter<"Lead"> | string
-    notes?: StringWithAggregatesFilter<"Lead"> | string
+    service?: StringWithAggregatesFilter<"Lead"> | string
+    message?: StringWithAggregatesFilter<"Lead"> | string
+    smsConsent?: BoolWithAggregatesFilter<"Lead"> | boolean
     status?: StringWithAggregatesFilter<"Lead"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
@@ -2103,11 +2072,9 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
-    projectType: string
-    budget: string
-    timeline: string
-    address?: string
-    notes?: string
+    service?: string
+    message?: string
+    smsConsent?: boolean
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2118,11 +2085,9 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
-    projectType: string
-    budget: string
-    timeline: string
-    address?: string
-    notes?: string
+    service?: string
+    message?: string
+    smsConsent?: boolean
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2133,11 +2098,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    projectType?: StringFieldUpdateOperationsInput | string
-    budget?: StringFieldUpdateOperationsInput | string
-    timeline?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    smsConsent?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2148,11 +2111,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    projectType?: StringFieldUpdateOperationsInput | string
-    budget?: StringFieldUpdateOperationsInput | string
-    timeline?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    smsConsent?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2163,11 +2124,9 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
-    projectType: string
-    budget: string
-    timeline: string
-    address?: string
-    notes?: string
+    service?: string
+    message?: string
+    smsConsent?: boolean
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2178,11 +2137,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    projectType?: StringFieldUpdateOperationsInput | string
-    budget?: StringFieldUpdateOperationsInput | string
-    timeline?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    smsConsent?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2193,11 +2150,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    projectType?: StringFieldUpdateOperationsInput | string
-    budget?: StringFieldUpdateOperationsInput | string
-    timeline?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    notes?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    smsConsent?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2217,6 +2172,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -2233,11 +2193,9 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    projectType?: SortOrder
-    budget?: SortOrder
-    timeline?: SortOrder
-    address?: SortOrder
-    notes?: SortOrder
+    service?: SortOrder
+    message?: SortOrder
+    smsConsent?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -2248,11 +2206,9 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    projectType?: SortOrder
-    budget?: SortOrder
-    timeline?: SortOrder
-    address?: SortOrder
-    notes?: SortOrder
+    service?: SortOrder
+    message?: SortOrder
+    smsConsent?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -2263,11 +2219,9 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    projectType?: SortOrder
-    budget?: SortOrder
-    timeline?: SortOrder
-    address?: SortOrder
-    notes?: SortOrder
+    service?: SortOrder
+    message?: SortOrder
+    smsConsent?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -2290,6 +2244,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -2308,6 +2270,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -2324,6 +2290,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2363,6 +2334,14 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

@@ -13,11 +13,9 @@ model Lead {
   name        String
   email       String
   phone       String
-  projectType String
-  budget      String
-  timeline    String
-  address     String   @default("")
-  notes       String   @default("")
+  service     String   @default("")
+  message     String   @default("")
+  smsConsent  Boolean  @default(false)
   status      String   @default("new")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

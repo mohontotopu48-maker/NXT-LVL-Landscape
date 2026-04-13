@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { db } from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, email, phone, projectType, budget, timeline, address, notes } = body
+    const { name, email, phone, service, message, smsConsent } = body
 
     // Validate required fields
-    if (!name || !email || !phone) {
+    if (!email || !phone) {
       return NextResponse.json(
-        { error: 'Name, email, and phone are required' },
+        { error: 'Email and phone are required' },
         { status: 400 }
       )
     }
@@ -22,36 +23,35 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // In production, you would save to database here:
-    // await db.lead.create({ data: { name, email, phone, projectType, budget, timeline, address, notes } })
-
-    // Log the lead (for demonstration)
-    console.log('New lead received:', {
-      name,
-      email,
-      phone,
-      projectType,
-      budget,
-      timeline,
-      address: address || 'Not provided',
-      notes: notes || 'None',
-      receivedAt: new Date().toISOString(),
+    // Save lead to database
+    const lead = await db.lead.create({
+      data: {
+        name: name || '',
+        email,
+        phone,
+        service: service || '',
+        message: message || '',
+        smsConsent: !!smsConsent,
+      },
     })
+
+    // Determine applicable promo
+    const hardscapeServices = ['Pavers', 'Concrete Work', 'Retaining Walls', 'Light Installation', 'Irrigation System Install', 'Drainage Installation', 'Tile Work', 'Fire Pits / BBQ Installations', 'Stucco Work']
+    const promo = hardscapeServices.includes(service) ? '$500 OFF' : '10% OFF'
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Lead received successfully',
-        promo: budget === '5k-10k' || budget === '10k-25k' || budget === '25k-50k' || budget === '50k+'
-          ? '$500 OFF'
-          : '10% OFF',
+        message: 'Estimate request received successfully!',
+        promo,
+        leadId: lead.id,
       },
       { status: 200 }
     )
   } catch (error) {
     console.error('Lead submission error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error. Please try again or call (657) 720-9054.' },
       { status: 500 }
     )
   }

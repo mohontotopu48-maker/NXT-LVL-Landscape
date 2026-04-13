@@ -232,7 +232,9 @@ export function EstimateForm() {
                     className="mt-0.5"
                   />
                   <label htmlFor="sms-consent" className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed cursor-pointer">
-                    By checking this box, you agree to receive SMS messages from NXT LVL Landscape. Message and data rates may apply. Reply STOP to unsubscribe.
+                    By filling in your details, you agree to receive occasional SMS notifications from Prosper MGMT Inc. Message frequency varies. Reply STOP to unsubscribe. Standard message and data rates may apply.{' '}
+                    <a href="#privacy" className="underline hover:text-foreground">Privacy Policy</a> and{' '}
+                    <a href="#terms" className="underline hover:text-foreground">Terms &amp; Conditions</a> for more details.
                   </label>
                 </div>
 

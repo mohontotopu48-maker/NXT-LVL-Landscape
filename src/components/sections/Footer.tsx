@@ -8,12 +8,12 @@ const quickLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About Us', href: '#about' },
   { label: 'Our Services', href: '#services' },
-  { label: 'FAQs', href: '#contact' },
+  { label: 'FAQs', href: '#faq' },
 ]
 
 const helpLinks = [
   { label: 'Contact Us', href: '#contact' },
-  { label: 'FAQs', href: '#contact' },
+  { label: 'FAQs', href: '#faq' },
 ]
 
 export function Footer() {
@@ -115,8 +115,8 @@ export function Footer() {
         <div className="py-5 sm:py-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs text-primary-foreground/40">
           <p>&copy; 2025 By NXT LVL Landscape. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary-foreground/70 transition-colors">Terms & Conditions</a>
+            <a href="#privacy" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
+            <a href="#terms" className="hover:text-primary-foreground/70 transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>

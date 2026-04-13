@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { COMPANY_KNOWLEDGE } from '@/lib/knowledge-base';
 
 // In-memory conversation store
 const conversations = new Map<string, Array<{ role: string; content: string }>>();

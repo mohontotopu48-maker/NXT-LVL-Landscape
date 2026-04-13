@@ -353,7 +353,7 @@ export function ChatWidget() {
           {/* Quick Contact Bar */}
           <div className="flex items-center gap-2 px-4 py-2 border-t border-gray-50 shrink-0">
             <a
-              href="tel:6577209054"
+              href="tel:+16577209054"
               className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#2a5a3e] transition-colors"
             >
               <Phone className="w-3 h-3" />
