@@ -18,15 +18,24 @@ import { Send, Loader2, Phone, Mail, MapPin, Instagram, Check, Clock } from 'luc
 import { useToast } from '@/hooks/use-toast'
 
 const serviceOptions = [
+  'Light Installation',
+  'Pavers',
+  'Concrete Work',
+  'Retaining Walls',
+  'Irrigation System Install',
+  'Drainage Installation',
+  'Tile Work',
+  'Planting',
+  'Sod Installation',
+  'Fire Pits / BBQ Installations',
+  'Stucco Work',
   'Re-Seeding',
   'Mulching',
-  'Pruning mowing',
+  'Pruning & Mowing',
   'Fertilization',
-  'Planting',
   'Leaf Removal',
   'Snow Removal',
   'Aeration',
-  'Sod Installment',
 ]
 
 export function EstimateForm() {
@@ -56,13 +65,19 @@ export function EstimateForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-      if (!res.ok) throw new Error('Failed to submit')
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || 'Failed to submit')
+      }
+      const data = await res.json()
       setIsComplete(true)
       toast({
         title: 'Estimate request received!',
-        description: 'We\'ll get back to you within 24 hours with your free quote.',
+        description: data.promo
+          ? `You qualify for ${data.promo}! We'll get back to you within 24 hours.`
+          : "We'll get back to you within 24 hours with your free quote.",
       })
-    } catch {
+    } catch (err) {
       toast({
         title: 'Something went wrong',
         description: 'Please try again or call us at (657) 720-9054.',
@@ -139,7 +154,7 @@ export function EstimateForm() {
           >
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-5 sm:p-7 md:p-8 border border-border/40 shadow-sm">
               <div className="space-y-4 sm:space-y-5">
-                {/* Name */}
+                {/* Name & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name" className="text-xs sm:text-sm font-medium mb-1.5 block">
@@ -199,6 +214,7 @@ export function EstimateForm() {
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="none" disabled>Select a service...</SelectItem>
                       {serviceOptions.map((option) => (
                         <SelectItem key={option} value={option}>
                           {option}
