@@ -2,13 +2,17 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { CheckCircle2, Shield, Clock, Award, Truck, ThumbsUp } from 'lucide-react'
+import { CheckCircle2, Shield, Clock, Award, Truck, ThumbsUp, Star } from 'lucide-react'
 
 const values = [
-  'Precision craftsmanship in every stone and pour',
-  'Materials sourced for longevity and beauty',
-  'Transparent communication from concept to completion',
-  'Designs that increase property value and quality of life',
+  {
+    title: 'Experience You Can Trust',
+    description: 'With years of hands-on expertise, our team ensures every project is done with precision, quality, and care.',
+  },
+  {
+    title: 'Custom Designs for Every Home',
+    description: 'We create outdoor solutions tailored to your lifestyle, turning your vision into a reality that lasts.',
+  },
 ]
 
 const advantages = [
@@ -16,27 +20,24 @@ const advantages = [
   { icon: Clock, title: 'On-Time Delivery', description: 'We respect your schedule, every time' },
   { icon: Award, title: 'Premium Materials', description: 'Only the best from trusted manufacturers' },
   { icon: Truck, title: 'Clean Job Sites', description: 'We leave your property spotless' },
-  { icon: ThumbsUp, title: '5-Year Warranty', description: 'We stand behind every project' },
-  { icon: CheckCircle2, title: 'Satisfaction Guaranteed', description: '100% client satisfaction, period' },
+  { icon: ThumbsUp, title: 'Satisfaction Guaranteed', description: 'Your satisfaction is our priority' },
+  { icon: CheckCircle2, title: 'Free Estimates', description: 'No-obligation quotes for every project' },
 ]
 
 const testimonials = [
   {
-    name: 'Maria S.',
-    role: 'Homeowner',
-    text: 'NXT LVL transformed our backyard into an outdoor living room. The paver patio is absolutely stunning — neighbors keep stopping by to compliment it.',
+    name: 'Janice Zapery',
+    text: 'NXT LVL transformed our backyard into a paradise. The team was professional, reliable, and delivered exactly what we wanted — all at an affordable price. Highly recommend them!',
     rating: 5,
   },
   {
-    name: 'David & Karen T.',
-    role: 'Property Investors',
-    text: 'We hired them for a full hardscape renovation and the ROI was incredible. Our property value increased significantly. True professionals.',
+    name: 'Justin Deviz',
+    text: 'Joseph and his crew went above and beyond our expectations. From design to installation, everything was smooth and stress-free. We absolutely love our new patio and can\'t wait to enjoy it for years to come.',
     rating: 5,
   },
   {
-    name: 'James R.',
-    role: 'Repeat Client',
-    text: 'First they did our driveway, then the retaining wall, then the landscape lighting. Every single project exceeded expectations. We won\'t use anyone else.',
+    name: 'Jordane Ogu',
+    text: 'This is by far the best landscaping company we\'ve ever hired. The attention to detail, the quality of work, and the respect for our property made all the difference. Definitely recommending them to family and friends.',
     rating: 5,
   },
 ]
@@ -52,7 +53,7 @@ export function Experience() {
   return (
     <>
       {/* Experience / About */}
-      <section id="experience" className="py-16 sm:py-20 md:py-28 bg-background" ref={ref}>
+      <section id="about" className="py-16 sm:py-20 md:py-28 bg-background mesh-gradient-hero" ref={ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Image Side */}
@@ -64,8 +65,8 @@ export function Experience() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/[0.08]">
                 <img
-                  src="/images/experience.png"
-                  alt="NXT LVL Landscape craftsmanship"
+                  src="/images/founders.png"
+                  alt="NXT LVL Landscape founders Joseph A. and Jose Henriquez"
                   className="w-full aspect-[4/3] object-cover"
                 />
               </div>
@@ -76,9 +77,16 @@ export function Experience() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="absolute -bottom-3 sm:-bottom-5 right-2 sm:right-8 bg-white rounded-xl shadow-xl p-3.5 sm:p-5 border border-border/40 animate-float"
               >
-                <div className="text-2xl sm:text-3xl font-display text-forest">20</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground">Years of</div>
-                <div className="text-[10px] sm:text-xs font-semibold">Craftsmanship</div>
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 rounded-full bg-forest flex items-center justify-center text-white text-xs font-bold border-2 border-white">J</div>
+                    <div className="w-8 h-8 rounded-full bg-earth flex items-center justify-center text-white text-xs font-bold border-2 border-white">J</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">Founded by</div>
+                    <div className="text-[11px] sm:text-sm font-semibold">Joseph & Jose</div>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -90,38 +98,36 @@ export function Experience() {
               className="order-1 lg:order-2"
             >
               <div className="font-eyebrow text-forest mb-3 sm:mb-4">
-                Our Story
+                About Us
               </div>
 
               <h2 className="text-[clamp(1.75rem,4.5vw,3rem)] font-display text-foreground mb-5 sm:mb-6 text-balance">
-                Not Just Landscaping.
+                Your Trusted
                 <br />
-                <span className="text-muted-foreground">A Legacy of Craft.</span>
+                Landscaping Experts
               </h2>
 
               <p className="text-sm sm:text-[15px] text-muted-foreground font-editorial mb-4 leading-relaxed">
-                Founded by brothers Joseph & Jose Henriquez, NXT LVL Landscape was built on a simple
-                belief: your outdoor space should be as thoughtfully designed as your home&apos;s interior.
-              </p>
-
-              <p className="text-sm sm:text-[15px] text-muted-foreground font-editorial mb-6 sm:mb-8 leading-relaxed">
-                For two decades, we&apos;ve transformed properties with precision hardscaping that
-                stands the test of time. Every project begins with understanding your vision and ends
-                with an outdoor space that exceeds it.
+                Founded by Joseph A. & Jose Henriquez, NXT LVL Landscape is built on the belief that every outdoor space deserves a touch of excellence. With years of experience, our team delivers professional landscaping, hardscaping, and patio solutions tailored to your needs. We don&apos;t just create landscapes — we create lasting experiences.
               </p>
 
               {/* Values */}
-              <div className="space-y-3">
+              <div className="space-y-5 mt-6">
                 {values.map((value, index) => (
                   <motion.div
-                    key={value}
+                    key={value.title}
                     initial={{ opacity: 0, x: 16 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
-                    className="flex items-start gap-2.5"
+                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    className="bg-white rounded-xl p-4 sm:p-5 border border-border/40 shadow-sm"
                   >
-                    <CheckCircle2 className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-forest mt-0.5 shrink-0" />
-                    <span className="text-sm sm:text-[15px] text-foreground font-medium">{value}</span>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 sm:w-[18px] sm:h-[18px] text-forest mt-0.5 shrink-0" />
+                      <div>
+                        <span className="text-sm sm:text-[15px] text-foreground font-semibold block mb-1">{value.title}</span>
+                        <span className="text-xs sm:text-sm text-muted-foreground font-editorial leading-relaxed">{value.description}</span>
+                      </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -156,7 +162,7 @@ export function Experience() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isAdvantagesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 group"
+                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 group card-lift"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-forest/8 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-forest/12 transition-colors">
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-forest" strokeWidth={1.5} />
@@ -196,23 +202,22 @@ export function Experience() {
                 transition={{ duration: 0.5, delay: 0.15 + index * 0.12 }}
                 className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-7 border border-border/40 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
+                {/* Stars */}
                 <div className="flex items-center gap-0.5 mb-3">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#fbbf24] fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                    <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#fbbf24] fill-[#fbbf24]" />
                   ))}
                 </div>
                 <p className="text-sm sm:text-[15px] text-muted-foreground font-editorial leading-relaxed mb-4">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-sm font-semibold text-forest">
-                    {testimonial.name.charAt(0)}
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-forest to-forest-light flex items-center justify-center text-sm font-semibold text-white">
+                    {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
                     <div className="font-semibold text-sm">{testimonial.name}</div>
-                    <div className="text-[11px] sm:text-xs text-muted-foreground">{testimonial.role}</div>
+                    <div className="text-[11px] sm:text-xs text-muted-foreground">Happy Client</div>
                   </div>
                 </div>
               </motion.div>

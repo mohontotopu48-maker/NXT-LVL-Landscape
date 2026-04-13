@@ -6,40 +6,32 @@ import { ArrowUpRight } from 'lucide-react'
 
 const services = [
   {
+    id: 'lighting',
+    title: 'Light Installation',
+    description: 'Enhance your outdoor spaces with professional landscape lighting that adds beauty, security, and ambiance.',
+    image: '/images/service-lighting.png',
+    features: ['Path Lights', 'Up-lighting', 'Security', 'Ambiance'],
+  },
+  {
     id: 'pavers',
-    title: 'Pavers & Patios',
-    description:
-      'Hand-selected natural stone and premium concrete pavers installed with meticulous precision for lasting beauty.',
+    title: 'Pavers',
+    description: 'Custom-designed paver walkways, patios, and driveways that bring durability and style to your property.',
     image: '/images/service-pavers.png',
-    features: ['Driveways', 'Patios', 'Walkways', 'Pool Decks'],
-    accent: 'from-earth/80 to-earth-dark/80',
+    features: ['Walkways', 'Patios', 'Driveways', 'Pool Decks'],
   },
   {
     id: 'concrete',
-    title: 'Concrete Design',
-    description:
-      'Stamped, colored, and textured concrete that transforms surfaces into striking design statements.',
+    title: 'Concrete Work',
+    description: 'High-quality concrete solutions for patios, pathways, and outdoor living areas built to last.',
     image: '/images/service-concrete.png',
-    features: ['Stamped', 'Colored', 'Foundations', 'Flatwork'],
-    accent: 'from-foreground/70 to-foreground/90',
+    features: ['Patios', 'Pathways', 'Stamped', 'Foundations'],
   },
   {
     id: 'retaining',
     title: 'Retaining Walls',
-    description:
-      'Engineered for strength, designed for beauty — creating stunning garden tiers and functional levels.',
+    description: 'Functional and decorative retaining walls that prevent erosion while adding structure and elegance to your yard.',
     image: '/images/service-retaining.png',
-    features: ['Segmental', 'Natural Stone', 'Terraces', 'Seat Walls'],
-    accent: 'from-forest-dark/70 to-forest/80',
-  },
-  {
-    id: 'lighting',
-    title: 'Light Installation',
-    description:
-      'Architectural lighting that highlights your home\'s best features with ambiance and safety.',
-    image: '/images/service-lighting.png',
-    features: ['Path Lights', 'Up-lighting', 'Deck Lights', 'Security'],
-    accent: 'from-gold/70 to-earth/70',
+    features: ['Erosion Control', 'Terraces', 'Seat Walls', 'Garden Beds'],
   },
 ]
 
@@ -58,15 +50,15 @@ function ServiceCard({
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative bg-white rounded-2xl overflow-hidden border border-border/40 shadow-sm hover:shadow-xl hover:shadow-black/[0.06] transition-all duration-500"
+      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative bg-white rounded-2xl overflow-hidden border border-border/40 shadow-sm hover:shadow-xl hover:shadow-black/[0.06] transition-all duration-500 card-lift"
     >
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+          alt={`${service.title} by NXT LVL Landscape`}
+          className="w-full h-full object-cover img-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -113,7 +105,7 @@ export function Services() {
   const isHeaderInView = useInView(headerRef, { once: true, margin: '-60px' })
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-28 bg-secondary/20">
+    <section id="services" className="py-16 sm:py-20 md:py-28 mesh-gradient-forest">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div ref={headerRef} className="text-center mb-10 sm:mb-14 md:mb-16">
@@ -123,7 +115,7 @@ export function Services() {
             transition={{ duration: 0.5 }}
             className="font-eyebrow text-forest mb-3 sm:mb-4"
           >
-            What We Do
+            Our Services
           </motion.div>
 
           <motion.h2
@@ -132,9 +124,7 @@ export function Services() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[clamp(1.75rem,5vw,3.25rem)] font-display text-foreground mb-4 sm:mb-5 text-balance"
           >
-            Crafted Services,
-            <br />
-            <span className="text-muted-foreground">Exceptional Results</span>
+            What We Offer
           </motion.h2>
 
           <motion.p
@@ -143,8 +133,7 @@ export function Services() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-sm sm:text-base text-muted-foreground font-editorial max-w-xl mx-auto px-2 leading-relaxed"
           >
-            Each service is delivered with the same unwavering commitment to quality,
-            precision, and lasting beauty.
+            From professional lighting to custom paver patios, we deliver quality craftsmanship in every project.
           </motion.p>
         </div>
 

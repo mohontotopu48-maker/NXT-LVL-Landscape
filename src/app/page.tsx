@@ -10,6 +10,7 @@ import { ProjectPlanner } from '@/components/sections/ProjectPlanner'
 import { CTA } from '@/components/sections/CTA'
 import { Footer } from '@/components/sections/Footer'
 import { StickyMobileBar } from '@/components/sections/StickyMobileBar'
+import { ChatWidget } from '@/components/sections/ChatWidget'
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </main>
       <Footer />
       <StickyMobileBar />
+      <ChatWidget />
     </div>
   )
 }

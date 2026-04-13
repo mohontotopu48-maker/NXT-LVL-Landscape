@@ -3,18 +3,29 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ArrowLeft, Check, Send, Loader2 } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Check, Send, Loader2, Phone } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
-const projectTypes = [
-  { id: 'pavers', label: 'Pavers / Patio', icon: '🪨' },
+const mainServices = [
+  { id: 'lighting', label: 'Light Installation', icon: '💡' },
+  { id: 'pavers', label: 'Pavers', icon: '🪨' },
   { id: 'concrete', label: 'Concrete Work', icon: '🏗️' },
-  { id: 'retaining', label: 'Retaining Wall', icon: '🧱' },
-  { id: 'lighting', label: 'Landscape Lighting', icon: '💡' },
-  { id: 'driveway', label: 'Driveway', icon: '🚗' },
-  { id: 'full', label: 'Full Outdoor Living', icon: '🌿' },
-  { id: 'other', label: 'Other', icon: '✨' },
+  { id: 'retaining', label: 'Retaining Walls', icon: '🧱' },
 ]
+
+const additionalServices = [
+  { id: 'reseeding', label: 'Re-Seeding', icon: '🌱' },
+  { id: 'mulching', label: 'Mulching', icon: '🍂' },
+  { id: 'pruning-mowing', label: 'Pruning & Mowing', icon: '✂️' },
+  { id: 'fertilization', label: 'Fertilization', icon: '🧪' },
+  { id: 'planting', label: 'Planting', icon: '🌿' },
+  { id: 'leaf-removal', label: 'Leaf Removal', icon: '🍃' },
+  { id: 'snow-removal', label: 'Snow Removal', icon: '❄️' },
+  { id: 'aeration', label: 'Aeration', icon: '⛏️' },
+  { id: 'sod-installation', label: 'Sod Installation', icon: '🏡' },
+]
+
+const allServices = [...mainServices, ...additionalServices, { id: 'other', label: 'Other', icon: '✨' }]
 
 const budgetRanges = [
   { id: 'under5k', label: 'Under $5,000', range: '< $5k' },
@@ -86,7 +97,7 @@ export function ProjectPlanner() {
     } catch {
       toast({
         title: 'Something went wrong',
-        description: 'Please try again or call us directly.',
+        description: 'Please try again or call us at (657) 720-9054.',
         variant: 'destructive',
       })
     } finally {
@@ -96,7 +107,7 @@ export function ProjectPlanner() {
 
   if (isComplete) {
     return (
-      <section id="planner" className="py-16 sm:py-20 md:py-28 bg-white" ref={sectionRef}>
+      <section id="planner" className="py-16 sm:py-20 md:py-28 bg-secondary/20" ref={sectionRef}>
         <div className="max-w-xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -111,16 +122,18 @@ export function ProjectPlanner() {
             Thank you, {selections.name}! Our team will review your project details and reach out
             within 24 hours with a personalized consultation plan.
           </p>
-          <div className="mt-6 p-5 bg-forest/5 rounded-2xl border border-forest/10">
+          <div className="mt-6 p-5 bg-white rounded-2xl border border-border/40 shadow-sm">
             <div className="text-[11px] font-semibold tracking-wider uppercase text-forest/60 mb-1">
-              Estimated Promo Savings
+              Need Immediate Help?
             </div>
-            <div className="text-2xl sm:text-3xl font-display text-forest">
-              {selections.budget === '50k+' || selections.budget === '25k-50k' || selections.budget === '10k-25k'
-                ? '$500 OFF'
-                : '10% OFF'}
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">Applied to your project estimate</div>
+            <a
+              href="tel:+16577209054"
+              className="text-xl sm:text-2xl font-display text-forest hover:text-forest-light transition-colors inline-flex items-center gap-2"
+            >
+              <Phone size={20} />
+              (657) 720-9054
+            </a>
+            <div className="text-xs text-muted-foreground mt-1">Call or text anytime</div>
           </div>
         </div>
       </section>
@@ -128,7 +141,7 @@ export function ProjectPlanner() {
   }
 
   return (
-    <section id="planner" className="py-16 sm:py-20 md:py-28 bg-white" ref={sectionRef}>
+    <section id="planner" className="py-16 sm:py-20 md:py-28 bg-secondary/20 mesh-gradient-forest" ref={sectionRef}>
       <div className="max-w-2xl sm:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -138,14 +151,14 @@ export function ProjectPlanner() {
           className="text-center mb-8 sm:mb-10"
         >
           <div className="font-eyebrow text-forest mb-3 sm:mb-4">
-            Smart Project Planner
+            Free Project Planner
           </div>
           <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-display text-foreground mb-3 sm:mb-4">
-            Let&apos;s Build Something{' '}
-            <span className="text-forest">Extraordinary</span>
+            Get Your Free{' '}
+            <span className="text-forest">Estimate</span>
           </h2>
           <p className="text-sm sm:text-[15px] text-muted-foreground font-editorial">
-            Answer a few quick questions and we&apos;ll craft a personalized plan for your space.
+            Answer a few quick questions and we&apos;ll craft a personalized plan for your outdoor space.
           </p>
         </motion.div>
 
@@ -182,15 +195,18 @@ export function ProjectPlanner() {
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-secondary/30 rounded-2xl p-5 sm:p-7 md:p-10 border border-border/40"
+          className="bg-white rounded-2xl p-5 sm:p-7 md:p-10 border border-border/40 shadow-sm"
         >
           {/* Step 1: Project Type */}
           {currentStep === 1 && (
             <div>
               <h3 className="text-lg sm:text-xl font-semibold mb-1 tracking-tight">What type of project?</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground mb-5">Select one that best describes your project.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
-                {projectTypes.map((type) => (
+              <p className="text-xs sm:text-sm text-muted-foreground mb-5">Select the service that best describes your project.</p>
+
+              {/* Main Services */}
+              <p className="text-[11px] font-semibold tracking-[0.08em] uppercase text-muted-foreground mb-2">Main Services</p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-5">
+                {mainServices.map((type) => (
                   <button
                     key={type.id}
                     onClick={() => setSelections({ ...selections, projectType: type.id })}
@@ -204,6 +220,36 @@ export function ProjectPlanner() {
                     <span className="text-xs sm:text-sm font-medium">{type.label}</span>
                   </button>
                 ))}
+              </div>
+
+              {/* Additional Services */}
+              <p className="text-[11px] font-semibold tracking-[0.08em] uppercase text-muted-foreground mb-2">Additional Services</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
+                {additionalServices.map((type) => (
+                  <button
+                    key={type.id}
+                    onClick={() => setSelections({ ...selections, projectType: type.id })}
+                    className={`p-3 sm:p-3.5 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/40 hover:bg-forest/[0.03] active:scale-[0.97] ${
+                      selections.projectType === type.id
+                        ? 'border-forest bg-forest/[0.04] shadow-sm'
+                        : 'border-border/40 bg-white'
+                    }`}
+                  >
+                    <span className="text-base sm:text-lg mb-1 block">{type.icon}</span>
+                    <span className="text-[11px] sm:text-xs font-medium leading-tight">{type.label}</span>
+                  </button>
+                ))}
+                <button
+                  onClick={() => setSelections({ ...selections, projectType: 'other' })}
+                  className={`p-3 sm:p-3.5 rounded-xl border-2 text-left transition-all duration-200 hover:border-forest/40 hover:bg-forest/[0.03] active:scale-[0.97] ${
+                    selections.projectType === 'other'
+                      ? 'border-forest bg-forest/[0.04] shadow-sm'
+                      : 'border-border/40 bg-white'
+                  }`}
+                >
+                  <span className="text-base sm:text-lg mb-1 block">✨</span>
+                  <span className="text-[11px] sm:text-xs font-medium leading-tight">Other</span>
+                </button>
               </div>
             </div>
           )}
@@ -298,7 +344,7 @@ export function ProjectPlanner() {
                       value={selections.phone}
                       onChange={(e) => setSelections({ ...selections, phone: e.target.value })}
                       className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl border border-border bg-white text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-forest/20 focus:border-forest/40 transition-all"
-                      placeholder="(555) 123-4567"
+                      placeholder="(657) 720-9054"
                     />
                   </div>
                 </div>
@@ -333,7 +379,7 @@ export function ProjectPlanner() {
                 <Button
                   variant="ghost"
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="text-muted-foreground gap-1.5 text-sm h-10 sm:h-11"
+                  className="text-muted-foreground gap-1.5 text-sm h-11"
                 >
                   <ArrowLeft size={14} />
                   Back
@@ -345,7 +391,7 @@ export function ProjectPlanner() {
                 <Button
                   onClick={() => setCurrentStep(currentStep + 1)}
                   disabled={!canProceed()}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-5 sm:px-6 gap-2 disabled:opacity-35 text-sm h-10 sm:h-11 transition-all"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-5 sm:px-6 gap-2 disabled:opacity-35 text-sm h-11 transition-all"
                 >
                   Continue
                   <ArrowRight size={14} />
@@ -354,14 +400,14 @@ export function ProjectPlanner() {
                 <Button
                   onClick={handleSubmit}
                   disabled={!canProceed() || isSubmitting}
-                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 sm:px-8 gap-2 disabled:opacity-35 text-sm h-10 sm:h-11 transition-all"
+                  className="bg-forest hover:bg-forest-light text-white rounded-full px-6 sm:px-8 gap-2 disabled:opacity-35 text-sm h-11 transition-all"
                 >
                   {isSubmitting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
                     <Send size={14} />
                   )}
-                  Submit Project
+                  Submit
                 </Button>
               )}
             </div>
@@ -369,9 +415,15 @@ export function ProjectPlanner() {
         </motion.div>
 
         {/* Trust Message */}
-        <p className="text-center text-[11px] sm:text-xs text-muted-foreground mt-4 sm:mt-5">
-          🔒 Your information is kept private. We never share your data.
-        </p>
+        <div className="text-center mt-4 sm:mt-5 space-y-1">
+          <p className="text-[11px] sm:text-xs text-muted-foreground">
+            🔒 Your information is kept private. We never share your data.
+          </p>
+          <a href="tel:+16577209054" className="text-[11px] sm:text-xs text-forest hover:text-forest-light transition-colors inline-flex items-center gap-1">
+            <Phone size={11} />
+            Or call us directly: (657) 720-9054
+          </a>
+        </div>
       </div>
     </section>
   )

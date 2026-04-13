@@ -2,35 +2,35 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { MessageSquare, Ruler, Hammer, Heart } from 'lucide-react'
+import { Phone, MessageCircle, Pencil, ClipboardCheck } from 'lucide-react'
 
 const steps = [
   {
     number: '01',
-    title: 'Free Consultation',
-    description: 'Share your vision. We listen, ask questions, and understand your goals, style, and budget.',
-    icon: MessageSquare,
+    title: 'Contact & Free Quote',
+    description: 'Reach out via phone, email, or our online form to share your ideas and get a free, no-obligation quote.',
+    icon: Phone,
     color: 'bg-forest/10 text-forest',
   },
   {
     number: '02',
-    title: 'Custom Design',
-    description: 'Our team crafts a detailed plan with 3D renderings and material selections tailored to you.',
-    icon: Ruler,
+    title: 'Consultation & Design',
+    description: 'Our team visits your property, discusses your vision, and creates a custom landscaping plan tailored to your style and budget.',
+    icon: Pencil,
     color: 'bg-earth/10 text-earth',
   },
   {
     number: '03',
-    title: 'Expert Build',
-    description: 'Our craftsmen bring the design to life with precision, quality materials, and clean execution.',
-    icon: Hammer,
+    title: 'Project Execution',
+    description: 'We bring your design to life with professional hardscaping, softscaping, and patio installations, using high-quality materials.',
+    icon: ClipboardCheck,
     color: 'bg-forest/10 text-forest',
   },
   {
     number: '04',
-    title: 'Enjoy & Share',
-    description: 'Step into your transformed outdoor space. We follow up to ensure everything exceeds expectations.',
-    icon: Heart,
+    title: 'Final Walkthrough & Satisfaction',
+    description: 'After completion, we review the project with you to ensure everything meets your expectations. Your satisfaction is our priority.',
+    icon: MessageCircle,
     color: 'bg-gold/10 text-gold',
   },
 ]
@@ -54,7 +54,7 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       )}
 
       {/* Icon Circle */}
-      <div className={`w-14 h-14 sm:w-16 sm:h-16 ${step.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-5 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-lg`}>
+      <div className={`w-14 h-14 sm:w-16 sm:h-16 ${step.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-5 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
         <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
       </div>
 
@@ -100,9 +100,7 @@ export function Process() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[clamp(1.75rem,5vw,3.25rem)] font-display text-foreground mb-4 sm:mb-5"
           >
-            Simple Process,
-            <br />
-            <span className="text-muted-foreground">Stunning Results</span>
+            Our Simple Process
           </motion.h2>
 
           <motion.p
@@ -111,7 +109,7 @@ export function Process() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-sm sm:text-base text-muted-foreground font-editorial max-w-lg mx-auto leading-relaxed"
           >
-            From first call to finished project, we make the entire experience seamless and enjoyable.
+            From first call to finished project — a seamless, stress-free experience every step of the way.
           </motion.p>
         </div>
 

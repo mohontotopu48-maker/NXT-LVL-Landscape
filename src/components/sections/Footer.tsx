@@ -2,18 +2,23 @@
 
 import { Phone, Mail, MapPin, Instagram, ArrowUp } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const footerLinks = {
   services: [
-    { label: 'Pavers & Patios', href: '#services' },
-    { label: 'Concrete Design', href: '#services' },
+    { label: 'Light Installation', href: '#services' },
+    { label: 'Pavers', href: '#services' },
+    { label: 'Concrete Work', href: '#services' },
     { label: 'Retaining Walls', href: '#services' },
-    { label: 'Landscape Lighting', href: '#services' },
+    { label: 'Re-Seeding', href: '#services' },
+    { label: 'Mulching', href: '#services' },
+    { label: 'Pruning & Mowing', href: '#services' },
   ],
   company: [
-    { label: 'About Us', href: '#experience' },
+    { label: 'About Us', href: '#about' },
     { label: 'Our Process', href: '#process' },
     { label: 'Project Gallery', href: '#gallery' },
+    { label: 'Special Offers', href: '#services' },
     { label: 'Free Estimate', href: '#planner' },
   ],
 }
@@ -31,9 +36,13 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-[10px] tracking-tight">NXT</span>
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="NXT LVL Landscape Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-lg"
+              />
               <div>
                 <div className="text-sm font-semibold tracking-tight leading-none">NXT LVL</div>
                 <div className="text-[9px] tracking-[0.18em] uppercase text-muted-foreground leading-none mt-0.5">
@@ -42,8 +51,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-xs text-muted-foreground font-editorial leading-relaxed mb-4 max-w-[260px]">
-              Precision hardscaping and landscape design that creates lasting outdoor experiences.
-              Founded by Joseph & Jose Henriquez.
+              Founded by Joseph A. & Jose Henriquez. Professional landscaping, hardscaping, and patio solutions tailored to your needs.
             </p>
             <a
               href="https://instagram.com/nxt.lvl.landscape"
@@ -94,13 +102,13 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-[11px] font-semibold tracking-[0.1em] uppercase mb-3">Contact</h4>
             <div className="space-y-2">
-              <a href="tel:+15551234567" className="flex items-center gap-2 text-xs sm:text-[13px] text-muted-foreground hover:text-foreground transition-colors py-1.5">
+              <a href="tel:+16577209054" className="flex items-center gap-2 text-xs sm:text-[13px] text-muted-foreground hover:text-foreground transition-colors py-1.5">
                 <Phone size={14} className="shrink-0" />
-                (555) 123-4567
+                (657) 720-9054
               </a>
-              <a href="mailto:info@nxtlvllandscape.com" className="flex items-center gap-2 text-xs sm:text-[13px] text-muted-foreground hover:text-foreground transition-colors py-1.5">
+              <a href="mailto:nxtlvllandscape@gmail.com" className="flex items-center gap-2 text-xs sm:text-[13px] text-muted-foreground hover:text-foreground transition-colors py-1.5">
                 <Mail size={14} className="shrink-0" />
-                info@nxtlvllandscape.com
+                nxtlvllandscape@gmail.com
               </a>
               <span className="flex items-start gap-2 text-xs sm:text-[13px] text-muted-foreground py-1.5">
                 <MapPin size={14} className="mt-0.5 shrink-0" />

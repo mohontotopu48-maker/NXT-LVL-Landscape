@@ -14,25 +14,44 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NXT LVL Landscape | Premium Hardscape & Landscape Design",
+  title: "NXT LVL Landscape | Professional Landscaping & Hardscaping Services",
   description:
-    "Precision hardscaping and landscape design that creates lasting outdoor experiences. 20 years of expertise in pavers, concrete, retaining walls, and landscape lighting. Founded by Joseph & Jose Henriquez.",
+    "From lush gardens to stunning patios, NXT LVL Landscape brings your outdoor vision to life. Professional landscaping, hardscaping, and patio solutions by Joseph A. & Jose Henriquez. Call (657) 720-9054.",
   keywords: [
     "landscape design",
     "hardscaping",
     "pavers",
-    "concrete",
+    "concrete work",
     "retaining walls",
     "landscape lighting",
     "outdoor living",
+    "patio installation",
+    "re-seeding",
+    "mulching",
+    "pruning",
+    "mowing",
+    "snow removal",
+    "aeration",
+    "sod installation",
     "NXT LVL Landscape",
+    "Orange County landscaping",
   ],
-  authors: [{ name: "NXT LVL Landscape" }],
+  authors: [{ name: "NXT LVL Landscape", url: "https://nxtlvllandscaping.com" }],
+  creator: "NXT LVL Landscape",
   openGraph: {
-    title: "NXT LVL Landscape | Premium Hardscape & Landscape Design",
+    title: "NXT LVL Landscape | Professional Landscaping & Hardscaping Services",
     description:
-      "Precision hardscaping and landscape design that creates lasting outdoor experiences. 20 years of expertise.",
+      "From lush gardens to stunning patios, NXT LVL Landscape brings your outdoor vision to life. Get expert design, reliable service, and lasting beauty.",
     type: "website",
+    url: "https://nxtlvllandscaping.com",
+    siteName: "NXT LVL Landscape",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NXT LVL Landscape | Professional Landscaping & Hardscaping Services",
+    description:
+      "From lush gardens to stunning patios, NXT LVL Landscape brings your outdoor vision to life.",
   },
 };
 
@@ -41,7 +60,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#3d6b4f",
+  themeColor: "#2a5a3e",
 };
 
 export default function RootLayout({

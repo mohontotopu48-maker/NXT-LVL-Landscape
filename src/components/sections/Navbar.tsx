@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const navLinks = [
+  { label: 'Home', href: '#' },
+  { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#experience' },
-  { label: 'Contact', href: '#planner' },
+  { label: 'Contact Us', href: '#planner' },
 ]
 
 export function Navbar() {
@@ -37,19 +37,23 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-2xl border-b border-border/30 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
+            ? 'bg-background/85 backdrop-blur-2xl border-b border-border/30 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
             : 'bg-transparent'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-[72px] flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 sm:gap-3 group z-10">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-              <span className="text-primary-foreground font-bold text-[10px] sm:text-xs tracking-tight">NXT</span>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="NXT LVL Landscape Logo"
+              width={36}
+              height={36}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg transition-all duration-300 group-hover:scale-105"
+            />
             <div className="flex flex-col">
               <span className={`text-sm sm:text-[15px] font-semibold tracking-tight leading-none transition-colors duration-300 ${
                 isScrolled ? 'text-foreground' : 'text-white'
@@ -79,13 +83,13 @@ export function Navbar() {
             ))}
             <div className="ml-3 flex items-center gap-2">
               <a
-                href="tel:+15551234567"
+                href="tel:+16577209054"
                 className={`px-3 py-2 text-[13px] font-medium transition-all duration-300 rounded-lg flex items-center gap-1.5 ${
                   isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
                 }`}
               >
                 <Phone size={13} />
-                (555) 123-4567
+                (657) 720-9054
               </a>
               <Button
                 asChild
@@ -99,8 +103,8 @@ export function Navbar() {
           {/* Mobile: CTA + Toggle */}
           <div className="flex lg:hidden items-center gap-2">
             <a
-              href="tel:+15551234567"
-              className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
+              href="tel:+16577209054"
+              className={`w-11 h-11 flex items-center justify-center rounded-full transition-all duration-300 ${
                 isScrolled
                   ? 'bg-forest/5 text-forest hover:bg-forest/10'
                   : 'bg-white/10 text-white hover:bg-white/20'
@@ -111,7 +115,7 @@ export function Navbar() {
             </a>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors z-10 ${
+              className={`w-11 h-11 flex items-center justify-center rounded-lg transition-colors z-10 ${
                 isScrolled ? 'hover:bg-secondary text-foreground' : 'hover:bg-white/10 text-white'
               }`}
               aria-label="Toggle menu"
@@ -159,11 +163,11 @@ export function Navbar() {
                   <a href="#planner" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
                 </Button>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+16577209054"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   <Phone size={16} />
-                  (555) 123-4567
+                  (657) 720-9054
                 </a>
               </motion.div>
             </div>

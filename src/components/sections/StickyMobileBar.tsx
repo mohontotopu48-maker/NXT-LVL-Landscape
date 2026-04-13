@@ -30,11 +30,11 @@ export function StickyMobileBar() {
       >
         <div className="flex items-center gap-2 px-4 py-3">
           <a
-            href="tel:+15551234567"
+            href="tel:+16577209054"
             className="flex-1 flex items-center justify-center gap-2 bg-forest hover:bg-forest-light text-white rounded-xl h-11 text-sm font-semibold transition-colors"
           >
             <Phone size={16} />
-            Call Now — (555) 123-4567
+            (657) 720-9054
           </a>
           <a
             href="#planner"
