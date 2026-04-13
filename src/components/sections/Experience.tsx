@@ -26,17 +26,14 @@ const advantages = [
 
 const testimonials = [
   {
-    name: 'Janice Zapery',
     text: 'NXT LVL transformed our backyard into a paradise. The team was professional, reliable, and delivered exactly what we wanted — all at an affordable price. Highly recommend them!',
     rating: 5,
   },
   {
-    name: 'Justin Deviz',
     text: 'Joseph and his crew went above and beyond our expectations. From design to installation, everything was smooth and stress-free. We absolutely love our new patio and can\'t wait to enjoy it for years to come.',
     rating: 5,
   },
   {
-    name: 'Jordane Ogu',
     text: 'This is by far the best landscaping company we\'ve ever hired. The attention to detail, the quality of work, and the respect for our property made all the difference. Definitely recommending them to family and friends.',
     rating: 5,
   },
@@ -65,8 +62,8 @@ export function Experience() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/[0.08]">
                 <img
-                  src="/images/founders.png"
-                  alt="NXT LVL Landscape founders Joseph A. and Jose Henriquez"
+                  src="/images/about.jpg"
+                  alt="NXT LVL Landscape team at work in Orange County"
                   className="w-full aspect-[4/3] object-cover"
                 />
               </div>
@@ -196,7 +193,7 @@ export function Experience() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.name}
+                key={index}
                 initial={{ opacity: 0, y: 24 }}
                 animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.15 + index * 0.12 }}
@@ -213,11 +210,11 @@ export function Experience() {
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-forest to-forest-light flex items-center justify-center text-sm font-semibold text-white">
-                    {testimonial.name.split(' ').map(n => n[0]).join('')}
+                    ✓
                   </div>
                   <div>
-                    <div className="font-semibold text-sm">{testimonial.name}</div>
-                    <div className="text-[11px] sm:text-xs text-muted-foreground">Happy Client</div>
+                    <div className="font-semibold text-sm">Verified Client</div>
+                    <div className="text-[11px] sm:text-xs text-muted-foreground">Happy Customer</div>
                   </div>
                 </div>
               </motion.div>

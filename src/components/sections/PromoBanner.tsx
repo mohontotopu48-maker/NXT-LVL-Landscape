@@ -2,20 +2,20 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ArrowRight, Clock, Gift, Percent, Users, Hammer } from 'lucide-react'
+import { ArrowRight, Gift, Users, Hammer, Percent } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const promos = [
   {
     icon: Gift,
-    title: 'Free Quotes & 10% Off',
+    title: 'Free Quotes & 10% Off a Service',
     description: 'Get a free, no-obligation quote and enjoy 10% off your first service with us.',
     accent: 'bg-forest',
   },
   {
     icon: Users,
-    title: '$25 Off Referral Bonus',
-    description: 'Refer a friend or family member and both of you receive $25 off your next service.',
+    title: '$25 Off for Referred Customers',
+    description: 'Refer a friend or family member and receive $25 off your next service.',
     accent: 'bg-earth',
   },
   {
@@ -26,8 +26,8 @@ const promos = [
   },
   {
     icon: Percent,
-    title: '10–15% Off Softscape',
-    description: 'Transform your garden with 10–15% off all softscape installation projects.',
+    title: '10–15% Off Softscape Projects',
+    description: 'With any patio installation, get 10–15% off on softscape installation projects.',
     accent: 'bg-gold',
   },
 ]
@@ -95,7 +95,7 @@ export function PromoBanner() {
           </motion.p>
         </div>
 
-        {/* Promo Cards Grid */}
+        {/* Promo Cards Grid - 4 on desktop, 2x2 on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10">
           {promos.map((promo, index) => (
             <PromoCard key={promo.title} promo={promo} index={index} />
@@ -127,10 +127,6 @@ export function PromoBanner() {
                 <p className="text-white/75 font-editorial text-sm sm:text-[15px] leading-relaxed">
                   Mention any of these offers when requesting your free estimate.
                 </p>
-                <div className="flex items-center gap-1.5 mt-2 text-white/50 text-xs">
-                  <Clock size={12} />
-                  <span>Scheduling fills fast — contact us today</span>
-                </div>
               </div>
             </div>
 
@@ -138,7 +134,7 @@ export function PromoBanner() {
               asChild
               className="w-full sm:w-auto bg-white text-forest hover:bg-white/90 rounded-full px-6 sm:px-8 h-11 sm:h-12 font-semibold shrink-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group"
             >
-              <a href="#planner" className="gap-2">
+              <a href="#contact" className="gap-2">
                 Get Free Quote
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>

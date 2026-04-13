@@ -4,31 +4,16 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
-const allImages = [
-  // Project images (PappaJohn Sculpture Park)
-  { src: '/images/project-1.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-2.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-3.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-4.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-5.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-6.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-7.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-8.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-9.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  { src: '/images/project-10.jpg', title: 'PappaJohn Sculpture Park', category: 'Project Gallery' },
-  // Additional gallery images
-  { src: '/images/gallery-1.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-2.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-3.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-4.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-5.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-6.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-7.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-8.jpg', title: 'Landscaping Work', category: 'Gallery' },
-  { src: '/images/gallery-9.jpg', title: 'Landscaping Work', category: 'Gallery' },
+const galleryImages = [
+  { src: '/images/gallery-1.jpg', title: 'Landscaping Project', category: 'Our Work' },
+  { src: '/images/gallery-2.jpg', title: 'Paver Installation', category: 'Our Work' },
+  { src: '/images/gallery-3.jpg', title: 'Outdoor Living Space', category: 'Our Work' },
+  { src: '/images/gallery-4.jpg', title: 'Garden Design', category: 'Our Work' },
+  { src: '/images/gallery-5.jpg', title: 'Patio Construction', category: 'Our Work' },
+  { src: '/images/gallery-6.jpg', title: 'Complete Makeover', category: 'Our Work' },
 ]
 
-function GalleryCard({ image, index, onOpen }: { image: typeof allImages[0]; index: number; onOpen: () => void }) {
+function GalleryCard({ image, index, onOpen }: { image: typeof galleryImages[0]; index: number; onOpen: () => void }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-30px' })
 
@@ -37,7 +22,7 @@ function GalleryCard({ image, index, onOpen }: { image: typeof allImages[0]; ind
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (index % 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onClick={onOpen}
       className="group relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
     >
@@ -67,8 +52,8 @@ export function ProjectGallery() {
 
   const openLightbox = useCallback((index: number) => setLightbox(index), [])
   const closeLightbox = useCallback(() => setLightbox(null), [])
-  const prevImage = useCallback(() => setLightbox(i => i !== null ? (i - 1 + allImages.length) % allImages.length : null), [])
-  const nextImage = useCallback(() => setLightbox(i => i !== null ? (i + 1) % allImages.length : null), [])
+  const prevImage = useCallback(() => setLightbox(i => i !== null ? (i - 1 + galleryImages.length) % galleryImages.length : null), [])
+  const nextImage = useCallback(() => setLightbox(i => i !== null ? (i + 1) % galleryImages.length : null), [])
 
   // Keyboard navigation
   useEffect(() => {
@@ -104,7 +89,7 @@ export function ProjectGallery() {
               transition={{ duration: 0.5 }}
               className="font-eyebrow text-forest mb-3 sm:mb-4"
             >
-              Our Work
+              Our Gallery
             </motion.div>
 
             <motion.h2
@@ -113,7 +98,7 @@ export function ProjectGallery() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-[clamp(1.75rem,5vw,3.25rem)] font-display text-foreground mb-4 sm:mb-5"
             >
-              PappaJohn Sculpture Park
+              Latest Projects
             </motion.h2>
 
             <motion.p
@@ -122,13 +107,13 @@ export function ProjectGallery() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-sm sm:text-base text-muted-foreground font-editorial max-w-lg mx-auto leading-relaxed"
             >
-              Explore our featured project gallery. Click any image to view in full size.
+              Explore our latest work. Click any image to view in full size.
             </motion.p>
           </div>
 
-          {/* Project Images Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {allImages.map((image, index) => (
+          {/* Gallery Grid - 3 cols desktop, 2 tablet, 1 mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {galleryImages.map((image, index) => (
               <GalleryCard
                 key={image.src}
                 image={image}
@@ -184,19 +169,19 @@ export function ProjectGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={allImages[lightbox].src}
-              alt={allImages[lightbox].title}
+              src={galleryImages[lightbox].src}
+              alt={galleryImages[lightbox].title}
               className="max-h-[65vh] w-auto rounded-xl object-contain"
             />
             <div className="mt-4 sm:mt-6 text-center">
               <span className="text-xs font-semibold tracking-[0.1em] uppercase text-white/50">
-                {allImages[lightbox].category}
+                {galleryImages[lightbox].category}
               </span>
               <h3 className="text-lg sm:text-xl font-semibold text-white mt-1">
-                {allImages[lightbox].title}
+                {galleryImages[lightbox].title}
               </h3>
               <p className="text-sm text-white/40 mt-2">
-                {lightbox + 1} / {allImages.length}
+                {lightbox + 1} / {galleryImages.length}
               </p>
             </div>
           </motion.div>

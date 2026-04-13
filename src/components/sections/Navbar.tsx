@@ -7,10 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const navLinks = [
-  { label: 'Home', href: '#' },
+  { label: 'Home', href: '#home' },
   { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Contact Us', href: '#planner' },
+  { label: 'Process', href: '#process' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export function Navbar() {
@@ -46,26 +48,14 @@ export function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-[72px] flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 sm:gap-3 group z-10">
+          <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group z-10">
             <Image
               src="/images/logo.png"
               alt="NXT LVL Landscape Logo"
-              width={36}
-              height={36}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg transition-all duration-300 group-hover:scale-105"
+              width={140}
+              height={40}
+              className="h-8 sm:h-9 w-auto transition-all duration-300 group-hover:scale-105"
             />
-            <div className="flex flex-col">
-              <span className={`text-sm sm:text-[15px] font-semibold tracking-tight leading-none transition-colors duration-300 ${
-                isScrolled ? 'text-foreground' : 'text-white'
-              }`}>
-                NXT LVL
-              </span>
-              <span className={`text-[9px] sm:text-[10px] tracking-[0.18em] uppercase leading-none mt-0.5 transition-colors duration-300 ${
-                isScrolled ? 'text-muted-foreground' : 'text-white/60'
-              }`}>
-                Landscape
-              </span>
-            </div>
           </a>
 
           {/* Desktop Nav */}
@@ -95,7 +85,7 @@ export function Navbar() {
                 asChild
                 className="bg-forest hover:bg-forest-light text-white rounded-full px-5 xl:px-6 h-9 text-[13px] font-medium transition-all duration-300 hover:shadow-lg hover:shadow-forest/25"
               >
-                <a href="#planner">Free Estimate</a>
+                <a href="#contact">Free Estimate</a>
               </Button>
             </div>
           </div>
@@ -153,14 +143,14 @@ export function Navbar() {
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.35 }}
+                transition={{ duration: 0.3, delay: 0.45 }}
                 className="mt-8 flex flex-col items-center gap-4"
               >
                 <Button
                   asChild
                   className="bg-forest hover:bg-forest-light text-white rounded-full px-8 h-12 text-sm font-medium w-64"
                 >
-                  <a href="#planner" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
+                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
                 </Button>
                 <a
                   href="tel:+16577209054"

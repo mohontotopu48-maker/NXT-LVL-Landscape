@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Phone, MessageCircle, Pencil, ClipboardCheck } from 'lucide-react'
+import { Phone, ClipboardCheck, Hammer, CheckCircle } from 'lucide-react'
 
 const steps = [
   {
@@ -16,21 +16,21 @@ const steps = [
     number: '02',
     title: 'Consultation & Design',
     description: 'Our team visits your property, discusses your vision, and creates a custom landscaping plan tailored to your style and budget.',
-    icon: Pencil,
+    icon: ClipboardCheck,
     color: 'bg-earth/10 text-earth',
   },
   {
     number: '03',
     title: 'Project Execution',
     description: 'We bring your design to life with professional hardscaping, softscaping, and patio installations, using high-quality materials.',
-    icon: ClipboardCheck,
+    icon: Hammer,
     color: 'bg-forest/10 text-forest',
   },
   {
     number: '04',
     title: 'Final Walkthrough & Satisfaction',
     description: 'After completion, we review the project with you to ensure everything meets your expectations. Your satisfaction is our priority.',
-    icon: MessageCircle,
+    icon: CheckCircle,
     color: 'bg-gold/10 text-gold',
   },
 ]
@@ -45,33 +45,43 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="relative flex flex-col items-center text-center group"
+      transition={{ duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="relative flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-0 group"
     >
-      {/* Connector Line (not on last) */}
+      {/* Mobile: Vertical connector */}
       {index < steps.length - 1 && (
-        <div className="hidden lg:block absolute top-[28px] left-[calc(50%+40px)] w-[calc(100%-80px)] h-px border-t border-dashed border-border/60" />
+        <div className="lg:hidden absolute top-[calc(100%+8px)] left-[28px] w-px h-8 border-l border-dashed border-border/60" />
       )}
 
       {/* Icon Circle */}
-      <div className={`w-14 h-14 sm:w-16 sm:h-16 ${step.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-5 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
+      <div className={`w-14 h-14 sm:w-16 sm:h-16 ${step.color} rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg z-10`}>
         <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
       </div>
 
-      {/* Step Number */}
-      <span className="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-forest/60 mb-2">
-        Step {step.number}
-      </span>
+      {/* Desktop connector line */}
+      {index < steps.length - 1 && (
+        <div className="hidden lg:block flex-1 h-px mx-4 lg:mx-6 border-t-2 border-dashed border-border/50 relative">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-border/50" />
+        </div>
+      )}
 
-      {/* Title */}
-      <h3 className="text-base sm:text-lg font-semibold mb-2 tracking-tight">
-        {step.title}
-      </h3>
+      {/* Content (offset on desktop) */}
+      <div className="lg:absolute lg:left-[calc(100%+16px)] lg:w-[calc(100%-80px)] lg:top-1/2 lg:-translate-y-1/2">
+        {/* Step Number */}
+        <span className="text-[11px] sm:text-xs font-semibold tracking-[0.15em] text-forest/60 mb-1.5 block">
+          Step {step.number}
+        </span>
 
-      {/* Description */}
-      <p className="text-xs sm:text-sm text-muted-foreground font-editorial leading-relaxed max-w-[240px]">
-        {step.description}
-      </p>
+        {/* Title */}
+        <h3 className="text-base sm:text-lg font-semibold mb-1.5 tracking-tight">
+          {step.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-muted-foreground font-editorial leading-relaxed max-w-[280px]">
+          {step.description}
+        </p>
+      </div>
     </motion.div>
   )
 }
@@ -91,7 +101,7 @@ export function Process() {
             transition={{ duration: 0.5 }}
             className="font-eyebrow text-forest mb-3 sm:mb-4"
           >
-            How It Works
+            Our Process
           </motion.div>
 
           <motion.h2
@@ -100,7 +110,7 @@ export function Process() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[clamp(1.75rem,5vw,3.25rem)] font-display text-foreground mb-4 sm:mb-5"
           >
-            Our Simple Process
+            A Simple, Stress-Free Experience
           </motion.h2>
 
           <motion.p
@@ -113,8 +123,8 @@ export function Process() {
           </motion.p>
         </div>
 
-        {/* Steps */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-6">
+        {/* Steps - Vertical on mobile, horizontal on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-0">
           {steps.map((step, index) => (
             <ProcessStep key={step.number} step={step} index={index} />
           ))}

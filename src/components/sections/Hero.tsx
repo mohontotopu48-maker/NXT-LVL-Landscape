@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image with parallax-like drift */}
       <div className="absolute inset-0">
         <img
@@ -67,8 +67,8 @@ export function Hero() {
             size="lg"
             className="w-full sm:w-auto bg-forest hover:bg-forest-light text-white rounded-full px-7 sm:px-8 h-12 sm:h-[52px] text-sm sm:text-[15px] font-semibold shadow-2xl shadow-black/25 transition-all duration-300 hover:shadow-black/35 hover:scale-[1.02] glow-green group"
           >
-            <a href="#services" className="gap-2">
-              Learn More
+            <a href="#contact" className="gap-2">
+              Get Free Estimate
               <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </a>
           </Button>
@@ -76,7 +76,7 @@ export function Hero() {
             asChild
             variant="ghost"
             size="lg"
-            className="w-full sm:w-auto text-white/85 hover:text-white hover:bg-white/10 rounded-full px-7 sm:px-8 h-12 sm:h-[52px] text-sm sm:text-[15px] font-medium gap-2.5 transition-all duration-300"
+            className="w-full sm:w-auto text-white/85 hover:text-white hover:bg-white/10 rounded-full px-7 sm:px-8 h-12 sm:h-[52px] text-sm sm:text-[15px] font-medium gap-2.5 transition-all duration-300 border border-white/15 hover:border-white/30"
           >
             <a href="#gallery">
               View Our Work
