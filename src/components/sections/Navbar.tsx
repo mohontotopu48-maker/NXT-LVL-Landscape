@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'FAQs', href: '#faq' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'FAQs', href: '/#faq' },
+  { label: 'Contact Us', href: '/#contact' },
 ]
 
 export function Navbar() {
@@ -47,7 +47,7 @@ export function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-[72px] flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group z-10">
+          <a href="/#home" className="flex items-center gap-2.5 sm:gap-3 group z-10">
             <Image
               src="/images/logo.png"
               alt="NXT LVL Landscape Logo"
@@ -84,7 +84,7 @@ export function Navbar() {
                 asChild
                 className="bg-forest hover:bg-forest-light text-white rounded-full px-5 xl:px-6 h-9 text-[13px] font-medium transition-all duration-300 hover:shadow-lg hover:shadow-forest/25"
               >
-                <a href="#contact">Free Estimate</a>
+                <a href="/#contact">Free Estimate</a>
               </Button>
             </div>
           </div>
@@ -149,7 +149,7 @@ export function Navbar() {
                   asChild
                   className="bg-forest hover:bg-forest-light text-white rounded-full px-8 h-12 text-sm font-medium w-64"
                 >
-                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
+                  <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Get Free Estimate</a>
                 </Button>
                 <a
                   href="tel:+16577209054"
