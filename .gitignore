@@ -52,3 +52,31 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Database files
+db/*.db
+db/*.db-journal
+
+# Sandbox-specific files
+Caddyfile
+server.js
+keepalive.sh
+dev.sh
+mini-services/
+examples/
+.zscripts/
+
+# Download/upload temp folders
+download/
+upload/
+
+# Research files
+competitor-analysis*.json
+design-research.json
+competitor-research.json
+
+# Work log
+worklog.md
+
+# Prisma generated
+prisma/generated/
